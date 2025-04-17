@@ -35,78 +35,79 @@
     };
   };
 
-  outputs =
-    inputs@{
-      self,
-      nixpkgs,
-      home-manager,
-      treefmt-nix,
-      ...
-    }:
-    let
-      host = "magic";
-      username = "jr";
-      system = "x86_64-linux";
-      userVars = {
-        gitEmail = "sawyerjr.25@gmail.com";
-        gitUsername = "TSawyer87";
-        editor = "hx";
-        term = "ghostty";
-        keys = "us";
-        browser = "firefox";
-        flake = "/home/jr/my-nixos";
-      };
-      pkgs = import nixpkgs {
+  outputs = inputs @ {
+    self,
+    nixpkgs,
+    home-manager,
+    treefmt-nix,
+    ...
+  }: let
+    host = "magic";
+    username = "jr";
+    system = "x86_64-linux";
+    userVars = {
+      gitEmail = "sawyerjr.25@gmail.com";
+      gitUsername = "TSawyer87";
+      editor = "hx";
+      term = "ghostty";
+      keys = "us";
+      browser = "firefox";
+      flake = "/home/jr/my-nixos";
+    };
+    pkgs = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
+
+    defaultConfig = import ./hosts/${host}/configuration.nix;
+
+    treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
+  in {
+    checks.x86_64-linux.style = treefmtEval.config.build.check self;
+
+    formatter.x86_64-linux = treefmtEval.config.build.wrapper;
+
+    devShells.${system}.default = import ./lib/dev-shell.nix {inherit inputs;};
+
+    packages.${system} = {
+      nixos = defaultConfig.config.system.build.toplevel;
+    };
+
+    # checks.${system} = import ./lib/checks.nix {inherit inputs self pkgs system host username userVars;};
+
+    nixosConfigurations = {
+      ${host} = nixpkgs.lib.nixosSystem {
         inherit system;
-        config.allowUnfree = true;
-      };
-
-      treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
-    in
-    {
-      checks.x86_64-linux.style = treefmtEval.config.build.check self;
-      formatter.x86_64-linux = treefmtEval.config.build.wrapper;
-      # formatter = {
-      #   #  or nixfmt-rfc-style
-      #   x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
-      # };
-      devShells.${system}.default = import ./lib/dev-shell.nix { inherit inputs; };
-
-      # checks.${system} = import ./lib/checks.nix {inherit inputs self pkgs system host username userVars;};
-
-      nixosConfigurations = {
-        ${host} = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            inherit
-              inputs
-              username
-              system
-              host
-              userVars
-              ;
-          };
-          modules = [
-            ./hosts/${host}/configuration.nix
-            home-manager.nixosModules.home-manager
-            inputs.stylix.nixosModules.stylix
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${username} = import ./hosts/${host}/home.nix;
-              home-manager.backupFileExtension = "backup";
-              home-manager.extraSpecialArgs = {
-                inherit
-                  inputs
-                  username
-                  system
-                  host
-                  userVars
-                  ;
-              };
-            }
-          ];
+        specialArgs = {
+          inherit
+            inputs
+            username
+            system
+            host
+            userVars
+            ;
         };
+        modules = [
+          ./hosts/${host}/configuration.nix
+          home-manager.nixosModules.home-manager
+          inputs.stylix.nixosModules.stylix
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.${username} = import ./hosts/${host}/home.nix;
+            home-manager.backupFileExtension = "backup";
+            home-manager.extraSpecialArgs = {
+              inherit
+                inputs
+                username
+                system
+                host
+                userVars
+                ;
+            };
+          }
+        ];
       };
     };
+  };
 }
