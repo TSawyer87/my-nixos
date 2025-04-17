@@ -1,9 +1,4 @@
-{
-  pkgs,
-  lib,
-  host,
-  ...
-}:
+{ pkgs, lib, ... }:
 {
   config = {
     programs = {
@@ -55,9 +50,9 @@
 
             # Nix
             # fr = "nh os switch --hostname magic /home/jr/flakes";
-            fr = "nh os switch --hostname ${host} /home/jr/my-nixos";
-            ft = "nh os test --hostname ${host} /home/jr/my-nixos";
-            fu = "nh os switch --hostname magic --update /home/jr/my-nixos";
+            fr = "nh os switch /home/jr/my-nixos";
+            ft = "nh os test /home/jr/my-nixos";
+            fu = "nh os switch --update /home/jr/my-nixos";
             opts = "man home-configuration.nix";
 
             cat = "${pkgs.bat}/bin/bat";
