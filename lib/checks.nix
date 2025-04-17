@@ -38,7 +38,7 @@
         inherit inputs username system host userVars;
       };
       modules = [
-        ./hosts/${host}/home.nix
+        ../hosts/${host}/home.nix
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
