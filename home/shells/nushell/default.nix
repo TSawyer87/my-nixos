@@ -3,20 +3,17 @@
   lib,
   ...
 }: {
-  home.packages = with pkgs; [
-    nitch
-  ];
   config = {
     programs = {
       carapace.enable = true;
       carapace.enableNushellIntegration = true;
       atuin.enable = true;
       atuin.enableNushellIntegration = true;
-      # direnv = {
-      #   enable = true;
-      #   # enableNushellIntegration = true;
-      #   nix-direnv.enable = true;
-      # };
+      direnv = {
+        enable = true;
+        # enableNushellIntegration = true;
+        nix-direnv.enable = true;
+      };
 
       nushell = {
         enable = true;
