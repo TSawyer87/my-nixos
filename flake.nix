@@ -52,7 +52,8 @@
     };
   in {
     formatter = {
-      x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
+      #  or nixfmt-rfc-style
+      x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
     };
     devShells.${system}.default = import ./lib/dev-shell.nix {inherit inputs;};
     nixosConfigurations = {
