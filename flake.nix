@@ -23,8 +23,6 @@
       url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,6 +39,7 @@
     self,
     nixpkgs,
     home-manager,
+    treefmt-nix,
     ...
   }: let
     host = "magic";
@@ -59,14 +58,28 @@
       inherit system;
       config.allowUnfree = true;
     };
+
+    treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
+
+    collectFlakeInputs = input:
+      [input] ++ builtins.concatMap collectFlakeInputs (builtins.attrValues (input.inputs or {}));
+
+    extraDeps =
+      builtins.concatMap collectFlakeInputs (builtins.attrValues inputs)
+      ++ [
+        self.checks.x86_64-linux.style
+        self.formatter.x86_64-linux
+      ];
   in {
-    formatter = {
-      #  or nixfmt-rfc-style
-      x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
-    };
+    checks.x86_64-linux.style = treefmtEval.config.build.check self;
+    formatter.x86_64-linux = treefmtEval.config.build.wrapper;
+    # formatter = {
+    #   #  or nixfmt-rfc-style
+    #   x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+    # };
     devShells.${system}.default = import ./lib/dev-shell.nix {inherit inputs;};
 
-    checks.${system} = import ./lib/checks.nix {inherit inputs self pkgs system host username userVars;};
+    # checks.${system} = import ./lib/checks.nix {inherit inputs self pkgs system host username userVars;};
 
     nixosConfigurations = {
       ${host} = nixpkgs.lib.nixosSystem {

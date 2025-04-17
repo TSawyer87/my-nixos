@@ -16,6 +16,5 @@
     ./keyd.nix
     ./thunar.nix
     ./lsp.nix
-    ./formatter.nix
   ];
 }
