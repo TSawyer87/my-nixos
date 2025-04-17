@@ -8,6 +8,7 @@
   home.packages = [
     # inputs.zen-browser.packages."${pkgs.system}".default
     pkgs.oh-my-zsh
+    pkgs.just
     pkgs.fzf
     pkgs.glow # markdown previewer in terminal
     pkgs.iotop # io monitoring
