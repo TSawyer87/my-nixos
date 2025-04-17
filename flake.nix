@@ -1,5 +1,5 @@
 {
-  description = "NixOS configuration";
+  description = "NixOS/Home-Manager Flake";
 
   inputs = {
     nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
@@ -12,9 +12,12 @@
     # nixvim.url = "github:nix-community/nixvim";
     # nix-inspect.url = "github:bluskript/nix-inspect";
     dont-track-me.url = "github:dtomvan/dont-track-me.nix/main";
-    rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     stylix.url = "github:danth/stylix";
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     nvf = {
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,6 +27,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     yazi.url = "github:sxyazi/yazi";
+    wezterm.url = "github:wezterm/wezterm?dir=nix";
     wallpapers = {
       url = "git+ssh://git@github.com/TSawyer87/wallpapers.git";
       flake = false;

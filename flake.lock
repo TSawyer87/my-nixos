@@ -100,6 +100,22 @@
         "type": "github"
       }
     },
+    "dont-track-me": {
+      "locked": {
+        "lastModified": 1740236549,
+        "narHash": "sha256-kPudEzLV58bjoz3lnJYPqPsrkWCTSaLzKaeNDpiIuro=",
+        "owner": "dtomvan",
+        "repo": "dont-track-me.nix",
+        "rev": "9664a973d594ca6900b694288f9c9bb84d2e52d9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dtomvan",
+        "ref": "main",
+        "repo": "dont-track-me.nix",
+        "type": "github"
+      }
+    },
     "firefox-gnome-theme": {
       "flake": false,
       "locked": {
@@ -1136,6 +1152,7 @@
     },
     "root": {
       "inputs": {
+        "dont-track-me": "dont-track-me",
         "helix": "helix",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
