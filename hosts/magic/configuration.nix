@@ -19,8 +19,8 @@
   # Custom amd module
   drivers.amdgpu.enable = true;
 
-  vm.guest-services.enable = false;
-  local.hardware-clock.enable = true;
+  # vm.guest-services.enable = false;
+  # local.hardware-clock.enable = true;
 
   # Enable Impermanence
   # isEphemeral = true;
