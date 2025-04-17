@@ -3,6 +3,9 @@
   lib,
   ...
 }: {
+  home.packages = with pkgs; [
+    nitch
+  ];
   config = {
     programs = {
       carapace.enable = true;
