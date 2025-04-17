@@ -3,7 +3,7 @@
     ./hardware.nix
     ./security.nix
     ./users.nix
-    ../../nixosModules
+    ../../nixos
   ];
 
   # Enable or Disable Stylix
