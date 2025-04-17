@@ -11,6 +11,7 @@ _: {
     ./i18n.nix
     ./environmentVariables.nix
     ./greetd.nix
+    ./cachix.nix
     ./pipewire.nix
     ./keyd.nix
     ./thunar.nix
