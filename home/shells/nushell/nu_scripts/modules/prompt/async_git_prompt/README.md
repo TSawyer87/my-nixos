@@ -21,9 +21,9 @@ To use this module:
 
 4. It will probably be convenient to alias this, e.g.
 
-   ```nu
-   alias r = async-git-prompt-refresh-cache
-   ```
+    ```nu
+    alias r = async-git-prompt-refresh-cache
+    ```
 
 5. To go back to synchronous mode, run `async-git-prompt-delete-cache`.
 

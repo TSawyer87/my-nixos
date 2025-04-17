@@ -42,12 +42,12 @@ This plugin adds the following aliases:
 
 - install
 
-  ```nushell
-  use {project_path}/aliases/docker/docker.nu
-  ```
+    ```nushell
+    use {project_path}/aliases/docker/docker.nu
+    ```
 
 - use
 
-  ```nushell
-  docker-aliases + tab
-  ```
+    ```nushell
+    docker-aliases + tab
+    ```

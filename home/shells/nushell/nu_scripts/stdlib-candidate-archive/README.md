@@ -1,7 +1,7 @@
 # std-lib candidate is deprecated
 
 Going forward, `std-rfc` will be included in the main Nushell release,
-just like `std` is.  This will allow users to more easily try-out its potential
+just like `std` is. This will allow users to more easily try-out its potential
 new commands and features.
 
 Please contribute new `std` proposals to the main Nushell repository.
@@ -15,4 +15,3 @@ This directory will be preserved for some period during deprecation, but no new
 contributions are expected to be accepted. Any remaining items from
 the older (pre-December 2024) `stdlib-candidate-old` should be identified for transition
 to `std-rfc`, since at some point we expect to delete this directory.
-

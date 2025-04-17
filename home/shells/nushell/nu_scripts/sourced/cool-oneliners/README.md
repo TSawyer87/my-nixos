@@ -10,10 +10,10 @@ Or an ongoing story of how people actually use `nu`.
 - the filename should be an abbreviation of the general topic of the script
   For example:
 
-  ```sh
-  git_batch_extract.nu
-  ```
+    ```sh
+    git_batch_extract.nu
+    ```
 
 - the script should have two lines
-  - the first line should be a comment describing the script's purpose
-  - the second line should be the cool oneliner
+    - the first line should be a comment describing the script's purpose
+    - the second line should be the cool oneliner

@@ -48,7 +48,7 @@
           "--tab-width"
           "4"
         ];
-        includes = ["*.{css,html,js,json,jsx,md,mdx,scss,ts,yaml}"];
+        includes = [ "*.{css,html,js,json,jsx,md,mdx,scss,ts,yaml}" ];
       };
     };
   };

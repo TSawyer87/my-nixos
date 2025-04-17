@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   programs = {
     home-manager.enable = true;
     gh.enable = true;

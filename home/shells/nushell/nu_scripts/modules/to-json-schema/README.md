@@ -31,47 +31,42 @@ Output JSON schema:
 
 ```json
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "title": "config",
-  "description": "A config",
-  "type": "object",
-  "properties": {
-    "size": {
-      "title": "size",
-      "description": "size\nhttps://my-doc",
-      "type": "string",
-      "minimum": 0,
-      "default": "normal"
-    },
-    "myInput": {
-      "title": "my input",
-      "description": "my input\nhttps://my-doc",
-      "type": "number",
-      "examples": [
-        1
-      ]
-    },
-    "width": {
-      "title": "width",
-      "description": "width\nhttps://my-doc",
-      "type": "number",
-      "minimum": 0,
-      "default": 21
-    },
-    "files": {
-      "title": "files",
-      "description": "files\nhttps://my-doc",
-      "type": "array",
-      "uniqueItems": true,
-      "items": {
-        "description": "A file\nhttps://my-doc",
-        "type": "string"
-      },
-      "default": [
-        "test.blend",
-        "test.blend"
-      ]
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "config",
+    "description": "A config",
+    "type": "object",
+    "properties": {
+        "size": {
+            "title": "size",
+            "description": "size\nhttps://my-doc",
+            "type": "string",
+            "minimum": 0,
+            "default": "normal"
+        },
+        "myInput": {
+            "title": "my input",
+            "description": "my input\nhttps://my-doc",
+            "type": "number",
+            "examples": [1]
+        },
+        "width": {
+            "title": "width",
+            "description": "width\nhttps://my-doc",
+            "type": "number",
+            "minimum": 0,
+            "default": 21
+        },
+        "files": {
+            "title": "files",
+            "description": "files\nhttps://my-doc",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "description": "A file\nhttps://my-doc",
+                "type": "string"
+            },
+            "default": ["test.blend", "test.blend"]
+        }
     }
-  }
 }
 ```

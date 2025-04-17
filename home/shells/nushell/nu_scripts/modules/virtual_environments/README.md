@@ -26,4 +26,4 @@ _(old text, not tested)_
 - Nested envs are not well supported. If you activate a Conda env while another one is
   activated, new elements will be appended to the PATH, but the other environment
   variables will be overwritten. There's no way to then restore the PATH to the state
-  it was in before activating the *first* env (at least not with this script directly).
+  it was in before activating the _first_ env (at least not with this script directly).

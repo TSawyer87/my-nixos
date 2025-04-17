@@ -7,7 +7,9 @@ Completions for [pre-commit](https://pre-commit.com/), a framework for managing 
 ```nushell
 use pre-commit-completions.nu *
 ```
+
 or
+
 ```nushell
 source pre-commit-completions.nu
 ```

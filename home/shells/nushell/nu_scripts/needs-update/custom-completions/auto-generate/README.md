@@ -6,6 +6,7 @@
 # parse-fish
 
 ## current
+
 - only parses out simple complete's with no complete's boolean arguments like -f
 - does not map fish autocomplete helpers to nu-complete helps (a nu library of autocomplete utils would be neat)
 
@@ -13,7 +14,7 @@
 
 be in a directory with one or more .fish completion scripts
 
-A good one is 
+A good one is
 
 `git clone https://github.com/fish-shell/fish-shell`
 `cd fish-shell/share/completions`
@@ -26,9 +27,11 @@ ls *.nu
 ```
 
 To build a single .fish file and choose the output file
+
 ```nu
 build-completion cargo.fish cargo.nu
 ```
+
 # parse-help
 
 ## current limitations
@@ -44,7 +47,7 @@ generate and save source to a file
 ```nu
 source parse-help.nu
 cargo --help | parse-help | make-completion cargo | save cargo.nu
-``` 
+```
 
 ## example
 
@@ -84,6 +87,7 @@ extern "nu" [
 ```
 
 Which outputs like so on tab completion for `cargo --`
+
 ```
 ❯ | cargo --
 --color    Coloring: auto, always, never

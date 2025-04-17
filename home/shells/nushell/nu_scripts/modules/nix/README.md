@@ -3,7 +3,9 @@
 Commands for working with [nix/nixos](https://nixos.org/).
 
 ### ns
+
 Shorthand search (`nix search nixpkgs ...`) with much nicer output.
+
 ```shell
 ❯ > nix search nixpkgs diesel
 * legacyPackages.x86_64-linux.diesel-cli (2.1.0)
@@ -12,6 +14,7 @@ Shorthand search (`nix search nixpkgs ...`) with much nicer output.
 * legacyPackages.x86_64-linux.diesel-cli-ext (0.3.13)
   Provides different tools for projects using the diesel_cli
 ```
+
 ```shell
 ❯ > ns diesel
 ╭───┬────────────────┬──────────────────────────────────────────────────────────────┬─────────╮
@@ -52,6 +55,7 @@ Shows changed packages after running `nixos-rebuild switch/boot` and change in t
 ### nufetch
 
 nu alternative to `neofetch`/`hyfetch`.
+
 ```
 ╭──────────┬───────────────────────────────────╮
 │ kernel   │ 6.11.0                            │

@@ -17,12 +17,15 @@ I tried to tidy part of it, and it is basically usable.
 (The goal is to organize all aliases to where they should go)
 
 ### gs
+
 Git status and stash.
 
 ### gl
+
 Git log and show.
 
 ### gb
+
 About the branch.
 
 Create branch if it doesn't exist,
@@ -32,6 +35,7 @@ use -d to delete.
 If there is no branch as an argument, the branch is displayed.
 
 ### gp
+
 Pull, push and other related to remote repositories
 
 > We assume that the upstream and downstream branches keep the same name and do not operate across branches.
@@ -48,6 +52,7 @@ Pull, push and other related to remote repositories
     - if `ahead`, `git push` will be executed.
 
 ### ga
+
 Git add, rm and restore. about files.
 
 Use `ga` because git add has the highest execution frequency,
@@ -58,32 +63,40 @@ and `ga` is the most convenient input.
 - git add
 
 ### gc
+
 Git commit
 
 ### gd
+
 Git diff
 
 ### gm
+
 Git merge and rebase
 
 - `--rebase` git rebase
 - git merge
 
 ### gcp
+
 Git cherry-pick
 
 ### gr
+
 Git reset
 
 ### grmt
+
 Git remote
 
 ### gbs
+
 Git bisect
 
 ## changelog
 
 #### 2023-05-18
+
 - `gp -u` can omit branch
 - delete `grb`
 - improve the premise in the description

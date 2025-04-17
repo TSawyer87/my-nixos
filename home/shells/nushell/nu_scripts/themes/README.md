@@ -4,10 +4,11 @@ Credit to @lemnos and [all contributors](https://github.com/lemnos/theme.sh/blob
 
 Note:
 
-* If using Nupm, or the `<package_root>/themes` directory of this package/repository is in your `$env.NU_LIB_DIRS`, then most of the commands below can be run from anywhere on your system.
-* Otherwise, all examples assume they are run from the `<package_root>/themes` directory.
+- If using Nupm, or the `<package_root>/themes` directory of this package/repository is in your `$env.NU_LIB_DIRS`, then most of the commands below can be run from anywhere on your system.
+- Otherwise, all examples assume they are run from the `<package_root>/themes` directory.
 
 ## Basic usage
+
 ### Activate a colorscheme
 
 ```nu
@@ -22,7 +23,7 @@ source nu-themes/dracula.nu
 
 The theme should be activated!
 
-Note that these settings are for the current shell only.  
+Note that these settings are for the current shell only.
 
 ### Making changes permanent
 
@@ -46,12 +47,12 @@ ls <package_root>/themes/nu-themes
 
 Themes are composed of two parts:
 
-* A Nushell `color_config` record which is used to set `$env.config.color_config`
-* A command to update your terminal's foreground, background, and cursor colors.  While this assumes that your terminal supports the appropriate OSC codes, the codes need are very basic and should be supported by most any terminal.
+- A Nushell `color_config` record which is used to set `$env.config.color_config`
+- A command to update your terminal's foreground, background, and cursor colors. While this assumes that your terminal supports the appropriate OSC codes, the codes need are very basic and should be supported by most any terminal.
 
 You may wish to set the Nushell `color_config` without changing your terminal's colors, or vice-versa. These themes provide additional commands that allow you to accomplish this.
 
-**Important:** Notice that while the "Basic usage" above uses `source` to activate the theme, the following examples *import* the theme module with a `use` statement.
+**Important:** Notice that while the "Basic usage" above uses `source` to activate the theme, the following examples _import_ the theme module with a `use` statement.
 
 ### Load a color_config
 
@@ -96,19 +97,19 @@ The parent `nu_scripts` package can be installed and updated using [Nupm].
 1. Install [Nupm] by following the [Nupm instructions]
 2. Download the `nu_scripts` repository
 
-   ```shell
-   git clone https://github.com/nushell/nu_scripts
-   ```
+    ```shell
+    git clone https://github.com/nushell/nu_scripts
+    ```
 
 3. Activate the `nupm` module with `use nupm`
 4. Install the `nu-scripts` package
 
-   ```nushell
-   nupm install --path --force nu_scripts
-   ```
+    ```nushell
+    nupm install --path --force nu_scripts
+    ```
 
-   > **Note**
-   > installing the `nu-scripts` package will install `nu-themes` and other modules
+    > **Note**
+    > installing the `nu-scripts` package will install `nu-themes` and other modules
 
 ## Screenshots
 

@@ -29,7 +29,6 @@ Host my_domain_3
     HostName mydomain_3.example.com
 ```
 
-
 When you press the tab key, it will display:
 
 ```

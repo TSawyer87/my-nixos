@@ -14,10 +14,11 @@ With `path/to/<command>` being either the relative path of the file to your curr
 Bear in mind that if you import the `use <path> *`, it is important that you don't name a function with the same name of the file
 
 ```nu
-# file: rustup.nu 
+# file: rustup.nu
 
 export extern rustup [
     ...args
 ]
 ```
+
 `use ./rustup.nu *` won't work here

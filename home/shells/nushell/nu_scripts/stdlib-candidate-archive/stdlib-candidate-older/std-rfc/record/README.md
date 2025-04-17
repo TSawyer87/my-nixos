@@ -6,14 +6,14 @@ A module to manipulate nu's records.
 
 ### Input/output types:
 
-|#|input|output|
-|-|-|-|
-|1|list\<record>|record|
+| #   | input         | output |
+| --- | ------------- | ------ |
+| 1   | list\<record> | record |
 
 ### Example
 
 ```nu
-> [{a:1} {b:2} {c:3}] | record list merge 
+> [{a:1} {b:2} {c:3}] | record list merge
 ╭───┬───╮
 │ a │ 1 │
 │ b │ 2 │
@@ -27,13 +27,13 @@ Filter a record by validating fields name with a predicate.
 
 ### Input/output types:
 
-|#|input|output|
-|-|-|-|
-|1|record|record|
+| #   | input  | output |
+| --- | ------ | ------ |
+| 1   | record | record |
 
 ## Arguments
 
-* `pred`: Predicate closure that checks fields name
+- `pred`: Predicate closure that checks fields name
 
 ### Example
 
@@ -53,14 +53,14 @@ Filter a record by validating fields name with text.
 
 ### Input/output types:
 
-|#|input|output|
-|-|-|-|
-|1|record|record|
+| #   | input  | output |
+| --- | ------ | ------ |
+| 1   | record | record |
 
 ## Arguments
 
-* `filter`: Text to match with
-* `--regex(-r)`: Match by regex
+- `filter`: Text to match with
+- `--regex(-r)`: Match by regex
 
 ### Examples
 
@@ -102,13 +102,13 @@ Filter a record by validating fields value with predicate.
 
 ### Input/output types:
 
-|#|input|output|
-|-|-|-|
-|1|record|record|
+| #   | input  | output |
+| --- | ------ | ------ |
+| 1   | record | record |
 
 ## Arguments
 
-* `pred`: Predicate closure that checks fields value
+- `pred`: Predicate closure that checks fields value
 
 ### Example
 

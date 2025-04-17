@@ -1,6 +1,6 @@
 # Auto virtual environment scripts
 
-The scripts in this directory activate virtual environments whenever you cd into a directory with a "trigger" file 
+The scripts in this directory activate virtual environments whenever you cd into a directory with a "trigger" file
 
 ## Usage
 
@@ -10,6 +10,7 @@ The scripts in this directory activate virtual environments whenever you cd into
 1. `cd` into `/path/to/project/`
 
 For example:
+
 ```nu
 # config.nu
 
@@ -26,8 +27,7 @@ When `auto-venv` detects that a file of that name exists in the folder you cd'ed
 
 An example overlay for python venv is in `./venvs`
 
-NOTE: the trigger file *must* export a custom command called `auto-venv-on-enter` that takes in the `$env` (this is the environment *before* the overlay was enabled).  
-
+NOTE: the trigger file _must_ export a custom command called `auto-venv-on-enter` that takes in the `$env` (this is the environment _before_ the overlay was enabled).
 
 ## Limitations
 
