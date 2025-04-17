@@ -3,14 +3,11 @@
 
   inputs = {
     nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    # nixvim.url = "github:nix-community/nixvim";
-    # nix-inspect.url = "github:bluskript/nix-inspect";
     dont-track-me.url = "github:dtomvan/dont-track-me.nix/main";
     stylix.url = "github:danth/stylix";
     hyprland = {
@@ -56,6 +53,9 @@
       x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
     };
     devShells.${system}.default = import ./lib/dev-shell.nix {inherit inputs;};
+
+    checks.${system} = import ./lib/checks.nix {inherit inputs self pkgs system host username userVars;};
+
     nixosConfigurations = {
       ${host} = nixpkgs.lib.nixosSystem {
         inherit system;
