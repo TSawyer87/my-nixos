@@ -1,5 +1,5 @@
 {
-  systemSettings,
+  userVars,
   pkgs,
   ...
 }: {
@@ -16,8 +16,8 @@
       enable = true;
       settings = {
         user = {
-          email = systemSettings.gitEmail;
-          name = systemSettings.gitUsername;
+          email = userVars.gitEmail;
+          name = userVars.gitUsername;
         };
         ui = {
           default-command = ["status" "--no-pager"];

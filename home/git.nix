@@ -1,8 +1,7 @@
 {
   pkgs,
   lib,
-  config,
-  systemSettings,
+  userVars,
   ...
 }: {
   home.packages = with pkgs; [
@@ -12,8 +11,8 @@
   programs = {
     git = {
       enable = true;
-      userName = systemSettings.gitUsername;
-      userEmail = systemSettings.gitEmail;
+      userName = userVars.gitUsername;
+      userEmail = userVars.gitEmail;
       aliases = {
         ci = "commit";
         co = "checkout";
