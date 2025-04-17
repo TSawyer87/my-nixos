@@ -65,6 +65,8 @@
 
     treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
   in {
+    lib = nixpkgs.lib;
+
     checks.x86_64-linux.style = treefmtEval.config.build.check self;
 
     formatter.x86_64-linux = treefmtEval.config.build.wrapper;
