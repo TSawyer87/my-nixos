@@ -1,8 +1,5 @@
+{ host, username, ... }:
 {
-  host,
-  username,
-  ...
-}: {
   programs.bash = {
     enable = true;
     enableCompletion = true;

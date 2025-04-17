@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   zramSwap = {
     enable = true;
     # one of "lzo", "lz4", "zstd"

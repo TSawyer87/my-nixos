@@ -3,8 +3,9 @@
   inputs,
   config,
   ...
-}: {
-  imports = [inputs.nvf.homeManagerModules.default];
+}:
+{
+  imports = [ inputs.nvf.homeManagerModules.default ];
 
   programs.nvf.enable = true;
 
@@ -27,25 +28,25 @@
       # }
       {
         key = "jk";
-        mode = ["i"];
+        mode = [ "i" ];
         action = "<ESC>";
         desc = "Exit insert mode with jk";
       }
       {
         key = "<leader>nh";
-        mode = ["n"];
+        mode = [ "n" ];
         action = ":nohl<CR>";
         desc = "Clear search highlights";
       }
       {
         key = "<leader>F";
-        mode = ["n"];
+        mode = [ "n" ];
         action = "<cmd>Telescope find_files<cr>";
         desc = "Search files by name";
       }
       {
         key = "<leader>ff";
-        mode = ["n"];
+        mode = [ "n" ];
         action = "<cmd>Telescope live_grep<cr>";
         desc = "Search files by contents";
       }

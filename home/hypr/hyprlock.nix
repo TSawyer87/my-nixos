@@ -1,8 +1,5 @@
+{ lib, inputs, ... }:
 {
-  lib,
-  inputs,
-  ...
-}: {
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -14,9 +11,7 @@
       };
       background = [
         {
-          path =
-            lib.mkForce
-            "${inputs.wallpapers}/Aesthetic Scenery.jpg";
+          path = lib.mkForce "${inputs.wallpapers}/Aesthetic Scenery.jpg";
           blur_passes = 3;
           blur_size = 8;
         }

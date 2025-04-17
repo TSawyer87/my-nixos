@@ -1,8 +1,12 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   nix = {
     settings = {
       auto-optimise-store = true;
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       # Number of simultaneous derivation builds
       max-jobs = lib.mkDefault "auto";
 

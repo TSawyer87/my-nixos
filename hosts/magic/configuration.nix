@@ -1,4 +1,5 @@
-{userVars, ...}: {
+{ userVars, ... }:
+{
   imports = [
     ./hardware.nix
     ./security.nix
@@ -11,7 +12,9 @@
 
   # Enable User module
   users.enable = true;
-  users = {mutableUsers = true;};
+  users = {
+    mutableUsers = true;
+  };
 
   # Custom Cachix enable
   gytix.cachix.enable = true;

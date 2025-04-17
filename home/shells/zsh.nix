@@ -2,9 +2,9 @@
   pkgs,
   host,
   username,
-  inputs,
   ...
-}: {
+}:
+{
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -13,7 +13,12 @@
     oh-my-zsh = {
       package = pkgs.oh-my-zsh;
       enable = true;
-      plugins = ["git" "sudo" "rust" "fzf"];
+      plugins = [
+        "git"
+        "sudo"
+        "rust"
+        "fzf"
+      ];
     };
     profileExtra = ''
       # if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then

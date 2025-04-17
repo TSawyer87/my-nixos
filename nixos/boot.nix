@@ -3,7 +3,8 @@
   # lib,
   pkgs,
   ...
-}: {
+}:
+{
   boot = {
     # LinuxZen Kernel
     kernelPackages = pkgs.linuxPackages_zen;
@@ -19,7 +20,9 @@
       "rd.udev.log_level=3"
       "plymouth.use-simpledrm"
     ];
-    kernel.sysctl = {"vm.max_map_count" = 2147483642;};
+    kernel.sysctl = {
+      "vm.max_map_count" = 2147483642;
+    };
     loader = {
       efi.canTouchEfiVariables = true;
       systemd-boot = {
@@ -29,7 +32,5 @@
     };
     plymouth.enable = true;
   };
-  environment.systemPackages = with pkgs; [
-    greetd.tuigreet
-  ];
+  environment.systemPackages = with pkgs; [ greetd.tuigreet ];
 }

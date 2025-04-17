@@ -1,8 +1,5 @@
+{ pkgs, inputs, ... }:
 {
-  pkgs,
-  inputs,
-  ...
-}: {
   programs.helix = with pkgs; {
     enable = true;
     package = inputs.helix.packages.${pkgs.system}.helix;
@@ -90,7 +87,9 @@
         normal = {
           H = ":buffer-previous";
           L = ":buffer-next";
-          space = {"." = ":fmt";};
+          space = {
+            "." = ":fmt";
+          };
           C-g = [
             ":write-all"
             ":new"
@@ -149,16 +148,21 @@
     languages = {
       language-server.biome = {
         command = "biome";
-        args = ["lsp-proxy"];
+        args = [ "lsp-proxy" ];
       };
 
       language-server.gpt = {
         command = "helix-gpt";
-        args = ["--handler" "copilot"];
+        args = [
+          "--handler"
+          "copilot"
+        ];
       };
 
       language-server.rust-analyzer.config = {
-        check = {command = "clippy";};
+        check = {
+          command = "clippy";
+        };
         check.features = "all";
         check.always = true;
         cargo.toolchain = "nightly";
@@ -166,8 +170,11 @@
         cargo.buildScripts.enable = true;
         cargo.autoreload = true;
         cargo.procMacro.enable = true;
-        cargo.procMacro.ignored.leptos_macro = ["server" "component"];
-        cargo.diagnostics.disables = ["unresolved-proc-macro"];
+        cargo.procMacro.ignored.leptos_macro = [
+          "server"
+          "component"
+        ];
+        cargo.diagnostics.disables = [ "unresolved-proc-macro" ];
         cargo.allFeatures = true;
       };
 
@@ -198,10 +205,16 @@
       language = [
         {
           name = "css";
-          language-servers = ["vscode-css-language-server" "gpt"];
+          language-servers = [
+            "vscode-css-language-server"
+            "gpt"
+          ];
           formatter = {
             command = "prettier";
-            args = ["--stdin-filepath" "file.css"];
+            args = [
+              "--stdin-filepath"
+              "file.css"
+            ];
           };
           auto-format = true;
         }
@@ -213,10 +226,16 @@
         # }
         {
           name = "html";
-          language-servers = ["vscode-html-language-server" "gpt"];
+          language-servers = [
+            "vscode-html-language-server"
+            "gpt"
+          ];
           formatter = {
             command = "prettier";
-            args = ["--stdin-filepath" "file.html"];
+            args = [
+              "--stdin-filepath"
+              "file.html"
+            ];
           };
           auto-format = true;
         }
@@ -225,7 +244,7 @@
           language-servers = [
             {
               name = "vscode-json-language-server";
-              except-features = ["format"];
+              except-features = [ "format" ];
             }
             "biome"
           ];
@@ -246,7 +265,7 @@
           language-servers = [
             {
               name = "vscode-json-language-server";
-              except-features = ["format"];
+              except-features = [ "format" ];
             }
             "biome"
           ];
@@ -260,15 +279,24 @@
               "file.jsonc"
             ];
           };
-          file-types = ["jsonc" "hujson"];
+          file-types = [
+            "jsonc"
+            "hujson"
+          ];
           auto-format = true;
         }
         {
           name = "markdown";
-          language-servers = ["marksman" "gpt"];
+          language-servers = [
+            "marksman"
+            "gpt"
+          ];
           formatter = {
             command = "prettier";
-            args = ["--stdin-filepath" "file.md"];
+            args = [
+              "--stdin-filepath"
+              "file.md"
+            ];
           };
           auto-format = true;
         }
@@ -282,8 +310,14 @@
         {
           name = "nix";
           auto-format = true;
-          language-servers = ["nil" "typos" "nixd"];
-          formatter = {command = "${pkgs.alejandra}/bin/alejandra";};
+          language-servers = [
+            "nil"
+            "typos"
+            "nixd"
+          ];
+          formatter = {
+            command = "${pkgs.alejandra}/bin/alejandra";
+          };
         }
         # {
         #   name = "rust";
@@ -295,61 +329,93 @@
           auto-format = true;
           formatter = {
             command = "topiary";
-            args = ["format" "--language" "nu"];
+            args = [
+              "format"
+              "--language"
+              "nu"
+            ];
           };
         }
         {
           name = "rust";
-          language-servers = ["scls" "rust-analyzer" "gpt"];
+          language-servers = [
+            "scls"
+            "rust-analyzer"
+            "gpt"
+          ];
           scope = "source.rust";
           injection-regex = "rs|rust";
-          file-types = ["rs"];
-          roots = ["Cargo.toml" "Cargo.lock"];
-          shebangs = ["rust-script" "cargo"];
+          file-types = [ "rs" ];
+          roots = [
+            "Cargo.toml"
+            "Cargo.lock"
+          ];
+          shebangs = [
+            "rust-script"
+            "cargo"
+          ];
           formatter = {
             command = "rustfmt";
-            args = ["--edition=2024"];
+            args = [ "--edition=2024" ];
           };
-          comment-tokens = ["//" "///" "//!"];
+          comment-tokens = [
+            "//"
+            "///"
+            "//!"
+          ];
           auto-format = true;
         }
         {
           name = "git-commit";
-          language-servers = ["scls"];
+          language-servers = [ "scls" ];
         }
         {
           name = "stub";
           scope = "text.stub";
-          file-types = [];
-          shebangs = [];
-          roots = [];
+          file-types = [ ];
+          shebangs = [ ];
+          roots = [ ];
           auto-format = false;
-          language-servers = ["scls"];
+          language-servers = [ "scls" ];
         }
         {
           name = "scss";
-          language-servers = ["vscode-css-language-server" "gpt"];
+          language-servers = [
+            "vscode-css-language-server"
+            "gpt"
+          ];
           formatter = {
             command = "prettier";
-            args = ["--stdin-filepath" "file.scss"];
+            args = [
+              "--stdin-filepath"
+              "file.scss"
+            ];
           };
           auto-format = true;
         }
         {
           name = "toml";
-          language-servers = ["taplo"];
+          language-servers = [ "taplo" ];
           formatter = {
             command = "taplo";
-            args = ["fmt" "-o" "column_width=120" "-"];
+            args = [
+              "fmt"
+              "-o"
+              "column_width=120"
+              "-"
+            ];
           };
           auto-format = true;
         }
         {
           name = "yaml";
-          language-servers = ["yaml-language-server"];
+          language-servers = [ "yaml-language-server" ];
           formatter = {
             command = "prettier";
-            args = ["--stdin-filepath" "file.yaml"];
+            args = [
+              "--stdin-filepath"
+              "file.yaml"
+            ];
           };
           auto-format = true;
         }

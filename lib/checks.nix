@@ -6,26 +6,19 @@
   host,
   username,
   userVars,
-}: {
+}:
+{
   # Formatter check
-  formatCheck =
-    pkgs.runCommand "format-check"
-    {
-      nativeBuildInputs = [pkgs.nixfmt-rfc-style];
-    } ''
-      nixfmt --check ${self}
-      touch $out
-    '';
+  formatCheck = pkgs.runCommand "format-check" { nativeBuildInputs = [ pkgs.nixfmt-rfc-style ]; } ''
+    nixfmt --check ${self}
+    touch $out
+  '';
 
   # Linting check with deadnix
-  deadnixCheck =
-    pkgs.runCommand "deadnix-check"
-    {
-      nativeBuildInputs = [pkgs.deadnix];
-    } ''
-      deadnix --fail ${self}
-      touch $out
-    '';
+  deadnixCheck = pkgs.runCommand "deadnix-check" { nativeBuildInputs = [ pkgs.deadnix ]; } ''
+    deadnix --fail ${self}
+    touch $out
+  '';
 
   # NixOS configuration build
   nixosConfig = self.nixosConfigurations.${host}.config.system.build.toplevel;
@@ -35,7 +28,13 @@
     (inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       extraSpecialArgs = {
-        inherit inputs username system host userVars;
+        inherit
+          inputs
+          username
+          system
+          host
+          userVars
+          ;
       };
       modules = [
         inputs.home-manager.nixosModules.home-manager

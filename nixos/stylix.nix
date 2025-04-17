@@ -5,8 +5,13 @@
   lib,
   ...
 }:
-with lib; {
-  options = {stylixModule = {enable = mkEnableOption "enables stylix";};};
+with lib;
+{
+  options = {
+    stylixModule = {
+      enable = mkEnableOption "enables stylix";
+    };
+  };
 
   config = mkIf config.stylixModule.enable {
     stylix = {
