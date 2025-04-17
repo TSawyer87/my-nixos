@@ -51,7 +51,7 @@
     };
     # devShells.${system}.default = import ./lib/dev-shell.nix {inherit inputs;};
     nixosConfigurations = {
-      hostname = nixpkgs.lib.nixosSystem {
+      ${host} = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {
           inherit inputs username system host userVars;
