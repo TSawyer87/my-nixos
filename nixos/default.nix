@@ -1,9 +1,9 @@
-{ ... }:
-{
+{...}: {
   imports = [
     ./drivers
     ./boot.nix
     ./networking.nix
+    ./services.nix
     ./nix.nix
     ./xdg.nix
     ./zram.nix
