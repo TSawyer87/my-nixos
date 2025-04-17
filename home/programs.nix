@@ -1,6 +1,5 @@
 {pkgs, ...}: {
   programs = {
-    home-manager.enable = true;
     gh.enable = true;
     btop = {
       enable = true;
