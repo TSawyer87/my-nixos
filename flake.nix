@@ -11,6 +11,7 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     # nixvim.url = "github:nix-community/nixvim";
     # nix-inspect.url = "github:bluskript/nix-inspect";
+    dont-track-me.url = "github:dtomvan/dont-track-me.nix/main";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     stylix.url = "github:danth/stylix";
     hyprland.url = "github:hyprwm/Hyprland";
