@@ -14,6 +14,7 @@
     ./greetd.nix
     ./cachix.nix
     ./pipewire.nix
+    ./programs.nix
     ./keyd.nix
     ./thunar.nix
     ./lsp.nix
