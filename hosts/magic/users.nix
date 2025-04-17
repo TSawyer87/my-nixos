@@ -2,8 +2,7 @@
   pkgs,
   lib,
   config,
-  inputs,
-  systemSettings,
+  userVars,
   username,
   ...
 }: {
@@ -15,7 +14,7 @@
         homeMode = "755";
         # initialHashedPassword = "correcthorsebatterystaple";
         isNormalUser = true;
-        description = systemSettings.gitUsername;
+        description = userVars.gitUsername;
         hashedPassword = "$6$hLxz1nh01PVcUQ6e$4o6tYrRxbRQQFRN3NSUMkPuwdRpOhNdp1s07TAYr2shcbdQUkYurHyk8Xp8FvjVPwr60N4NSPDmwUr6Nd5FD9.";
         extraGroups = ["networkmanager" "wheel" "libvirtd" "scanner" "lp" "root" "jr"];
         # shell = pkgs.zsh;
