@@ -48,6 +48,10 @@
       keys = "us";
       browser = "firefox";
     };
+    pkgs = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
   in {
     formatter = {
       #  or nixfmt-rfc-style
