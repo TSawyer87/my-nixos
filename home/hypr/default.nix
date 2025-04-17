@@ -1,6 +1,6 @@
-{ ... }:
-{
+{...}: {
   imports = [
+    ./rofi
     ./settings.nix
     ./execs.nix
     ./hypridle.nix
