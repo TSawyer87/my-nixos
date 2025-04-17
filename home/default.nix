@@ -10,11 +10,11 @@
     ./xdg.nix
     ./bat.nix
     ./nvf.nix
+    ./nh.nix
     ./emoji.nix
     ./direnv.nix
     ./programs.nix
     ./packages.nix
-    ./nushell
     ./helix
     ./yazi.nix
   ];

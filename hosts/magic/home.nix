@@ -42,7 +42,7 @@
   stylix.targets.hyprland.enable = false;
   stylix.targets.hyprlock.enable = false;
   # stylix.targets.zed.enable = true;
-  # stylix.targets.helix.enble = false;
+  stylix.targets.helix.enable = false;
   # stylix.targets.ghostty.enable = false;
   # stylix.targets.nvf.enable = false;
 }
