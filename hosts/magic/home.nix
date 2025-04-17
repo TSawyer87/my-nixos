@@ -8,7 +8,7 @@
   home = {
     username = "${username}";
     homeDirectory = "/home/" + "${username}";
-    stateVersion = "23.11";
+    stateVersion = "24.11";
   };
 
   # Import Program Configurations

@@ -44,7 +44,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "backup";
-          home.stateVersion = "24.05";
+          home.stateVersion = "24.11";
         }
       ];
     }).activationPackage; # Changed from activationPackage to activation-package
