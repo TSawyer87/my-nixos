@@ -10,5 +10,7 @@ _: {
     ./xdg.nix
     ./bat.nix
     ./nvf.nix
+    ./programs.nix
+    ./packages.nix
   ];
 }

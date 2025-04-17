@@ -54,7 +54,7 @@
     formatter = {
       x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
     };
-    # devShells.${system}.default = import ./lib/dev-shell.nix {inherit inputs;};
+    devShells.${system}.default = import ./lib/dev-shell.nix {inherit inputs;};
     nixosConfigurations = {
       ${host} = nixpkgs.lib.nixosSystem {
         inherit system;
