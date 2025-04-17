@@ -14,5 +14,7 @@
     ./direnv.nix
     ./programs.nix
     ./packages.nix
+    ./nushell
+    ./helix
   ];
 }
