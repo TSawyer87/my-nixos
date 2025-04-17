@@ -1,8 +1,6 @@
 {
   description = "NixOS/Home-Manager Flake";
 
-  nixConfig = import ./nixos/substituters.nix;
-
   inputs = {
     nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";

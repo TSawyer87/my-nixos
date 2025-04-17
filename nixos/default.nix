@@ -14,7 +14,7 @@
     ./i18n.nix
     ./environmentVariables.nix
     ./greetd.nix
-    # ./cachix.nix
+    ./cachix.nix
     ./pipewire.nix
     ./programs.nix
     ./keyd.nix
