@@ -16,5 +16,6 @@
     ./packages.nix
     ./nushell
     ./helix
+    ./yazi.nix
   ];
 }
