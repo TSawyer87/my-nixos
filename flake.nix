@@ -54,18 +54,30 @@
       browser = "firefox";
       flake = "/home/jr/my-nixos";
     };
+    jr-inputs =
+      inputs
+      // {
+        pkgs = import inputs.nixpkgs {
+          inherit system;
+        };
+        lib = {
+          nixosModules = import ./nixos;
+          homeModules = import ./home;
+          inherit system;
+        };
+      };
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
     };
 
     defaultConfig = import ./hosts/${host} {
-      inherit inputs;
+      inherit jr-inputs;
     };
 
     treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
   in {
-    lib = nixpkgs.lib;
+    lib = jr-inputs.lib;
 
     checks.x86_64-linux.style = treefmtEval.config.build.check self;
 
