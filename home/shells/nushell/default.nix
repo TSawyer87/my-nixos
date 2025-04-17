@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  userVars,
   ...
 }: {
   config = {
@@ -51,9 +52,9 @@
 
           # Nix
           # fr = "nh os switch --hostname magic /home/jr/flakes";
-          fr = "nh os switch /home/jr/flakes";
-          ft = "nh os test --hostname magic /home/jr/flakes";
-          fu = "nh os switch --hostname magic --update /home/jr/flakes";
+          fr = "nh os switch /home/jr/" ++ userVars.flake;
+          ft = "nh os test --hostname magic /home/jr/" ++ userVars.flake;
+          fu = "nh os switch --hostname magic --update /home/jr/" ++ userVars.flake;
           opts = "man home-configuration.nix";
 
           cat = "${pkgs.bat}/bin/bat";

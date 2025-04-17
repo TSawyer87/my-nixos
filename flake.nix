@@ -47,6 +47,7 @@
       term = "ghostty";
       keys = "us";
       browser = "firefox";
+      flake = "/home/jr/my-nixos";
     };
     pkgs = import nixpkgs {
       inherit system;
