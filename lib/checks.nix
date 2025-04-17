@@ -38,6 +38,7 @@
         inherit inputs username system host userVars;
       };
       modules = [
+        inputs.home-manager.nixosModules.home-manager
         ../hosts/${host}/home.nix
         {
           home-manager.useGlobalPkgs = true;
