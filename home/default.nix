@@ -10,6 +10,8 @@
     ./xdg.nix
     ./bat.nix
     ./nvf.nix
+    ./emoji.nix
+    ./direnv.nix
     ./programs.nix
     ./packages.nix
   ];
