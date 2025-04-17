@@ -59,7 +59,9 @@
       config.allowUnfree = true;
     };
 
-    defaultConfig = import ./hosts/${host}/configuration.nix;
+    defaultConfig = import ./hosts/${host} {
+      inherit inputs;
+    };
 
     treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
   in {
