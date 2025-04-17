@@ -4,6 +4,7 @@
     ./boot.nix
     ./networking.nix
     ./services.nix
+    ./hardware.nix
     ./nix.nix
     ./xdg.nix
     ./zram.nix
