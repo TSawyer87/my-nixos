@@ -46,7 +46,7 @@
           home.stateVersion = "24.05";
         }
       ];
-    }).activation-package; # Changed from activationPackage to activation-package
+    }).activationPackage; # Changed from activationPackage to activation-package
 
   # Dev shell
   devShell = self.devShells.${system}.default;
