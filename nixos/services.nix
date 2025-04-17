@@ -1,9 +1,9 @@
-{systemSettings, ...}: {
+{userVars, ...}: {
   services = {
     xserver = {
       enable = false;
       xkb = {
-        layout = systemSettings.keyboardLayout;
+        layout = userVars.keys;
         variant = "us";
       };
     };
@@ -14,7 +14,7 @@
     libinput.enable = true;
     fstrim.enable = true;
     gvfs.enable = true;
-    # openssh.enable = true;
+    openssh.enable = true;
     flatpak.enable = false;
     gnome.gnome-keyring.enable = true;
     ipp-usb.enable = true;
