@@ -25,10 +25,7 @@
   systemd.tmpfiles.rules =
     let
       move =
-        {
-          from,
-          to,
-        }:
+        { from, to }:
         [
           "d ${to} 0755 root root - -"
           "z ${to} 0755 root root - -"
