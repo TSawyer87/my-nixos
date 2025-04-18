@@ -17,6 +17,7 @@
       "LICENSE"
       "README.md"
       ".adr-dir"
+      "nu_scripts"
       # unsupported extensions
       "*.{gif,png,svg,tape,mts,lock,mod,sum,toml,env,envrc,gitignore,sql,conf,pem,*.so.2,key,pub,py,narHash}"
       "data-mesher/test/networks/*"
@@ -50,7 +51,7 @@
           "--tab-width"
           "4"
         ];
-        includes = [ "*.{css,html,js,json,jsx,md,mdx,scss,ts,yaml}" ];
+        includes = ["*.{css,html,js,json,jsx,md,mdx,scss,ts,yaml}"];
       };
     };
   };
