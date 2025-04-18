@@ -15,6 +15,7 @@
   settings = {
     global.excludes = [
       "LICENSE"
+      "README.md"
       ".adr-dir"
       # unsupported extensions
       "*.{gif,png,svg,tape,mts,lock,mod,sum,toml,env,envrc,gitignore,sql,conf,pem,*.so.2,key,pub,py,narHash}"
