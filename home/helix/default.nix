@@ -30,10 +30,16 @@
         cursorline = true;
         bufferline = "multiple";
         line-number = "relative";
+        rulers = [80 120];
         true-color = true;
         default-yank-register = "+";
 
-        soft-wrap.enable = true;
+        soft-wrap = {
+          enable = true;
+          max-wrap = 10;
+          # max-indent-retain = 14;
+          wrap-at-text-width = true;
+        };
 
         auto-save = {
           focus-lost = true;
@@ -290,29 +296,19 @@
         }
         {
           name = "markdown";
-          language-servers = ["marksman" "gpt"];
+          language-servers = [
+            "marksman"
+            "gpt"
+          ];
           formatter = {
             command = "prettier";
-            args = ["--print-width" "80"];
-            # args = ["--stdin-filepath" "file.md"];
+            args = [
+              "--stdin-filepath"
+              "file.md"
+            ];
           };
           auto-format = true;
         }
-        # {
-        #   name = "markdown";
-        #   language-servers = [
-        #     "marksman"
-        #     "gpt"
-        #   ];
-        #   formatter = {
-        #     command = "prettier";
-        #     args = [
-        #       "--stdin-filepath"
-        #       "file.md"
-        #     ];
-        #   };
-        #   auto-format = true;
-        # }
         # {
         #   name = "nix";
         #   formatter = {
