@@ -1,8 +1,4 @@
-{
-  pkgs,
-  # inputs,
-  ...
-}: {
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     # inputs.nix-inspect.packages.${pkgs.system}.default # util for inspecting derivations
     cheat # Display cheat sheets for commands
