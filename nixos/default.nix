@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./drivers
     ./boot.nix
@@ -22,3 +23,8 @@
     ./lsp.nix
   ];
 }
+# {
+#   drivers = import ./drivers.nix;
+#   boot = import ./boot.nix;
+#   utils = import ./utils.nix;
+# }
