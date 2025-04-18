@@ -3,12 +3,15 @@
   # lib,
   pkgs,
   ...
-}:
-{
+}: {
   boot = {
     # LinuxZen Kernel
     kernelPackages = pkgs.linuxPackages_zen;
     consoleLogLevel = 3;
+    tmp = {
+      useTmpfs = true;
+      tmpfsSize = "50%";
+    };
     # disable wifi powersave
     extraModprobeConfig = ''
       options iwlmvm  power_scheme=1
@@ -32,5 +35,5 @@
     };
     plymouth.enable = true;
   };
-  environment.systemPackages = with pkgs; [ greetd.tuigreet ];
+  environment.systemPackages = with pkgs; [greetd.tuigreet];
 }
