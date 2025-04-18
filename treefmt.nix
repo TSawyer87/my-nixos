@@ -25,6 +25,7 @@
       "*.nu"
       "*.png"
       ".jj/*"
+      "Cargo.lock"
       "flake.lock"
       "hive/moonrise/borg-key-backup"
       "justfile"
@@ -48,7 +49,7 @@
           "--tab-width"
           "4"
         ];
-        includes = [ "*.{css,html,js,json,jsx,md,mdx,scss,ts,yaml}" ];
+        includes = ["*.{css,html,js,json,jsx,md,mdx,scss,ts,yaml}"];
       };
     };
   };

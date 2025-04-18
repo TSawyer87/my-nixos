@@ -3,7 +3,8 @@
   # lib,
   pkgs,
   ...
-}: {
+}:
+{
   boot = {
     # LinuxZen Kernel
     kernelPackages = pkgs.linuxPackages_zen;
@@ -35,5 +36,5 @@
     };
     plymouth.enable = true;
   };
-  environment.systemPackages = with pkgs; [greetd.tuigreet];
+  environment.systemPackages = with pkgs; [ greetd.tuigreet ];
 }
