@@ -51,7 +51,22 @@
           "--tab-width"
           "4"
         ];
-        includes = ["*.{css,html,js,json,jsx,md,mdx,scss,ts,yaml}"];
+        includes = [
+          "*.css"
+          "*.html"
+          "*.js"
+          "*.json"
+          "*.jsx"
+          "*.md"
+          "*.mdx"
+          "*.scss"
+          "*.ts"
+          "*.yaml"
+        ];
+        excludes = [
+          "nu_scripts/README.md" # Explicitly exclude the README for prettier
+          "nu_scripts/**/README.md" # To catch READMEs in subdirectories as well
+        ];
       };
     };
   };
