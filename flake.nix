@@ -77,6 +77,10 @@
       ];
     };
 
+    packages.x86_64-linux.helloNixosTests = pkgs.writeScriptBin "hello-nixos-tests" ''
+      ${pkgs.netcat}/bin/nc -l 3000
+    '';
+
     # nixosModules = import ./nixos;
 
     # homeManagerModules = import ./home;
