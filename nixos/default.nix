@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   imports = [
     ./drivers
     ./boot.nix
@@ -14,6 +13,8 @@
     ./fonts.nix
     ./i18n.nix
     ./environmentVariables.nix
+    ./virtualization.nix
+    ./vm-guest-services.nix
     ./greetd.nix
     ./cachix.nix
     ./pipewire.nix
@@ -28,3 +29,4 @@
 #   boot = import ./boot.nix;
 #   utils = import ./utils.nix;
 # }
+

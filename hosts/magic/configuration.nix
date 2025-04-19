@@ -1,5 +1,4 @@
-{ userVars, ... }:
-{
+{userVars, ...}: {
   imports = [
     ./hardware.nix
     ./security.nix
@@ -22,7 +21,7 @@
   # Custom amd module
   drivers.amdgpu.enable = true;
 
-  # vm.guest-services.enable = false;
+  vm.guest-services.enable = true;
   # local.hardware-clock.enable = true;
 
   # Enable Impermanence
