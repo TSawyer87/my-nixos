@@ -1,5 +1,5 @@
 # Virtualization / Containers
-{...}: {
+_: {
   virtualisation.libvirtd.enable = true;
   virtualisation.podman = {
     enable = false;

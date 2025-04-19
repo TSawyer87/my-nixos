@@ -1,16 +1,17 @@
 {
   projectRootFile = "flake.nix";
   programs = {
+    alejandra.enable = true;
     deadnix.enable = true;
     # rustfmt.enable = true;
     # shellcheck.enable = true;
     # prettier.enable = true;
     statix.enable = true;
     keep-sorted.enable = true;
-    nixfmt = {
-      enable = true;
-      # strict = true;
-    };
+    # nixfmt = {
+    #   enable = true;
+    #   # strict = true;
+    # };
   };
   settings = {
     global.excludes = [
@@ -42,9 +43,13 @@
         priority = 2;
       };
 
-      nixfmt = {
+      alejandra = {
         priority = 3;
       };
+
+      # nixfmt = {
+      #   priority = 3;
+      # };
 
       # prettier = {
       #   options = [

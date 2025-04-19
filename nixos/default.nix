@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./drivers
     ./boot.nix
@@ -29,4 +30,3 @@
 #   boot = import ./boot.nix;
 #   utils = import ./utils.nix;
 # }
-
