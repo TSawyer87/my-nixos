@@ -77,6 +77,14 @@
       ];
     };
 
+    # Linting check with deadnix
+    deadnixCheck = pkgs.runCommand "deadnix-check" {nativeBuildInputs = [pkgs.deadnix];} ''
+      deadnix --fail ${self}
+      touch $out
+    '';
+
+    nixosConfig = self.nixosConfigurations.${host}.config.system.build.toplevel;
+
     # depInject = {
     #   pkgs,
     #   lib,
