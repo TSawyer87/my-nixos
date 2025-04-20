@@ -39,6 +39,11 @@
     "net.ipv4.tcp_congestion_control" = "bbr";
     "net.core.default_qdisc" = "cake";
   };
+  programs = {
+    mtr.enable = true;
+    gnupg.agent.enable = true;
+    enableSSHSupport = true;
+  };
   security = {
     sudo.enable = false;
     doas = {
@@ -57,12 +62,6 @@
 
     # userland niceness
     rtkit.enable = true;
-
-    programs = {
-      mtr.enable = true;
-      gnupg.agent.enable = true;
-      enableSSHSupport = true;
-    };
 
     polkit = {
       enable = true;
