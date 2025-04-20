@@ -6,4 +6,5 @@ _: {
     dockerCompat = false;
     defaultNetwork.settings.dns_enabled = false;
   };
+  programs.virt-manager.enable = true;
 }

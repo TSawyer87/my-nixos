@@ -58,6 +58,12 @@
     # userland niceness
     rtkit.enable = true;
 
+    programs = {
+      mtr.enable = true;
+      gnupg.agent.enable = true;
+      enableSSHSupport = true;
+    };
+
     polkit = {
       enable = true;
       extraConfig = ''
