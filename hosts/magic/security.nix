@@ -41,8 +41,10 @@
   };
   programs = {
     mtr.enable = true;
-    gnupg.agent.enable = true;
-    enableSSHSupport = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
   };
   security = {
     sudo.enable = false;
