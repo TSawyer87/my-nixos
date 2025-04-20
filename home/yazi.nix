@@ -1,13 +1,15 @@
-{ pkgs, inputs, ... }:
-let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   yazi-plugins = pkgs.fetchFromGitHub {
     owner = "yazi-rs";
     repo = "plugins";
     rev = "ceb053f";
     hash = "sha256-yBcbvzWU2FI7vkeqL7+ZIoQboybaPIiH4fV9yMqdHlM=";
   };
-in
-{
+in {
   programs = {
     yazi = {
       package = inputs.yazi.packages.${pkgs.system}.default;

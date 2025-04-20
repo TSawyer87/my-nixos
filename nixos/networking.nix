@@ -3,8 +3,7 @@
   host,
   options,
   ...
-}:
-{
+}: {
   # environment.systemPackages = [pkgs.impala];
   # Enable networking
   networking = {
@@ -24,6 +23,6 @@
       # allowedUDPPorts = [53 22];
     };
     enableIPv6 = true;
-    timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
+    timeServers = options.networking.timeServers.default ++ ["pool.ntp.org"];
   };
 }

@@ -6,16 +6,15 @@
   host,
   username,
   userVars,
-}:
-{
+}: {
   # Formatter check
-  formatCheck = pkgs.runCommand "format-check" { nativeBuildInputs = [ pkgs.nixfmt-rfc-style ]; } ''
+  formatCheck = pkgs.runCommand "format-check" {nativeBuildInputs = [pkgs.nixfmt-rfc-style];} ''
     nixfmt --check ${self}
     touch $out
   '';
 
   # Linting check with deadnix
-  deadnixCheck = pkgs.runCommand "deadnix-check" { nativeBuildInputs = [ pkgs.deadnix ]; } ''
+  deadnixCheck = pkgs.runCommand "deadnix-check" {nativeBuildInputs = [pkgs.deadnix];} ''
     deadnix --fail ${self}
     touch $out
   '';

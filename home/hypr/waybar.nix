@@ -1,6 +1,9 @@
-{ pkgs, lib, ... }:
-with lib;
 {
+  pkgs,
+  lib,
+  ...
+}:
+with lib; {
   # Configure & Theme Waybar
   programs.waybar = {
     enable = true;

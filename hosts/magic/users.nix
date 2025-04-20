@@ -5,8 +5,7 @@
   userVars,
   username,
   ...
-}:
-{
+}: {
   options = {
     users.enable = lib.mkEnableOption "Enables users module";
   };

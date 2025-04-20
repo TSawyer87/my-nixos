@@ -1,10 +1,9 @@
 {
   # config,
-  # lib,
+  lib,
   pkgs,
   ...
-}:
-{
+}: {
   boot = {
     # LinuxZen Kernel
     kernelPackages = pkgs.linuxPackages_zen;
@@ -32,9 +31,10 @@
       systemd-boot = {
         enable = true;
         configurationLimit = 20;
+        consoleMode = lib.mkDefault "max";
       };
     };
     plymouth.enable = true;
   };
-  environment.systemPackages = with pkgs; [ greetd.tuigreet ];
+  environment.systemPackages = with pkgs; [greetd.tuigreet];
 }

@@ -4,8 +4,7 @@
   config,
   ...
 }:
-with lib;
-let
+with lib; let
   drivers = [
     "amdgpu"
     #"intel"
@@ -20,18 +19,17 @@ let
   needsMesa = hasAmdGpu;
 
   cfg = config.drivers.amdgpu;
-in
-{
+in {
   options.drivers.amdgpu = {
     enable = mkEnableOption "Enable AMD Drivers";
   };
 
   config = mkIf cfg.enable {
     # Systemd tmpfiles rules for ROCm HIP
-    systemd.tmpfiles.rules = [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];
+    systemd.tmpfiles.rules = ["L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"];
 
     # Video drivers configuration for X server
-    services.xserver.videoDrivers = [ "amdgpu" ];
+    services.xserver.videoDrivers = ["amdgpu"];
 
     # Additional hardware configuration based on AMD GPU presence
     hardware = {
@@ -40,8 +38,7 @@ in
         enable = true;
         enable32Bit = false;
         extraPackages = pkgs.lib.flatten (
-          with pkgs;
-          [
+          with pkgs; [
             (lib.optional hasAmdGpu amdvlk)
             (lib.optional needsMesa mesa)
             rocmPackages.clr.icd # OpenCL
@@ -52,8 +49,7 @@ in
           ]
         );
         extraPackages32 = pkgs.lib.flatten (
-          with pkgs;
-          [
+          with pkgs; [
             (lib.optional hasAmdGpu amdvlk)
             (lib.optional needsMesa mesa)
           ]
@@ -79,8 +75,8 @@ in
         "radeon.si_support=0"
         "amdgpu.si_support=1"
       ];
-      extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
-      blacklistedKernelModules = [ "radeon" ];
+      extraModulePackages = [config.boot.kernelPackages.v4l2loopback];
+      blacklistedKernelModules = ["radeon"];
     };
   };
 }

@@ -3,8 +3,7 @@
   lib,
   userVars,
   ...
-}:
-{
+}: {
   home.packages = with pkgs; [
     lazygit
     delta

@@ -5,8 +5,7 @@
   lib,
   ...
 }:
-with lib;
-{
+with lib; {
   options = {
     stylixModule = {
       enable = mkEnableOption "enables stylix";

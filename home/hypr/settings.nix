@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{config, ...}: {
   wayland.windowManager.hyprland = {
     settings = {
       input = {
@@ -30,8 +29,7 @@
         allow_tearing = true; # allows immediate window rule to work
         # "col.active_border" = rgba(0DB7D4FF);
         # "col.inactive_border" = rgba(31313600)
-        "col.active_border" =
-          "rgb(${config.lib.stylix.colors.base08}) rgb(${config.lib.stylix.colors.base0C}) 45deg";
+        "col.active_border" = "rgb(${config.lib.stylix.colors.base08}) rgb(${config.lib.stylix.colors.base0C}) 45deg";
         "col.inactive_border" = "rgb(${config.lib.stylix.colors.base01})";
       };
 

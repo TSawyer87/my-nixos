@@ -1,6 +1,10 @@
-{ lib, ... }:
 {
+  inputs,
+  lib,
+  ...
+}: {
   nix = {
+    channel.enable = false;
     settings = {
       auto-optimise-store = true;
       experimental-features = [
@@ -12,6 +16,10 @@
 
       # Number of cores per derivation build
       cores = lib.mkDefault 0; # 0 means "use all available cores"
+    };
+    registry = {
+      # self = this flake
+      self.flake = inputs.self;
     };
     # gc = {
     #   automatic = true;

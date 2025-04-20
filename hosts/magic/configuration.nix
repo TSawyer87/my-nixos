@@ -1,5 +1,4 @@
-{ userVars, ... }:
-{
+{userVars, ...}: {
   imports = [
     ./hardware.nix
     ./security.nix

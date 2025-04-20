@@ -3,8 +3,7 @@
   username,
   inputs,
   ...
-}:
-{
+}: {
   # Home Manager Settings
   home = {
     username = "${username}";

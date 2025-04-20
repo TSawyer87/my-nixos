@@ -1,5 +1,8 @@
-{ userVars, pkgs, ... }:
 {
+  userVars,
+  pkgs,
+  ...
+}: {
   home.file.".jj/config.toml".text = ''
     [ui]
     diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
