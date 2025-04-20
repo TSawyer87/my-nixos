@@ -5,6 +5,7 @@
     sqlite
     nix-eval-jobs
     inxi # show detailed system info
+    mkpasswd
     wget
     eza
     clinfo
