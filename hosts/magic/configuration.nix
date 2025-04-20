@@ -1,4 +1,8 @@
-{userVars, ...}: {
+{
+  userVars,
+  config,
+  ...
+}: {
   imports = [
     ./hardware.nix
     ./security.nix
@@ -28,7 +32,10 @@
   # isEphemeral = true;
 
   # Set your time zone.
-  time.timeZone = "America/New_York";
+  # time.timeZone = "America/New_York";
+  environment.variables = {
+    TZ = "${config.time.timeZone}";
+  };
 
   # nixpkgs.config.permittedInsecurePackages = ["olm-3.2.16"];
 
