@@ -32,10 +32,7 @@
   # isEphemeral = true;
 
   # Set your time zone.
-  # time.timeZone = "America/New_York";
-  environment.variables = {
-    TZ = "${config.time.timeZone}";
-  };
+  time.timeZone = "America/New_York";
 
   # nixpkgs.config.permittedInsecurePackages = ["olm-3.2.16"];
 
