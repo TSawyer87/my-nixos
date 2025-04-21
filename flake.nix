@@ -70,6 +70,7 @@
       flake = self;
       pkgs = pkgs;
     };
+    inherit userVars;
 
     packages.${system}.default = pkgs.buildEnv {
       name = "default-tools";
