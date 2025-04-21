@@ -23,7 +23,7 @@
   };
 
   # Custom Cachix enable
-  gytix.cachix.enable = true;
+  gytix.cachix.enable = false;
 
   # Custom amd module
   drivers.amdgpu.enable = true;
