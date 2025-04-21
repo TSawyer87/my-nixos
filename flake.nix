@@ -96,9 +96,9 @@
     # inherit userVars;
 
     packages.${system} = {
-      default = pkgs.buildEnv {
+      default = inputs.pkgs.buildEnv {
         name = "default-tools";
-        paths = with pkgs; [
+        paths = with inputs.pkgs; [
           helix
           git
           ripgrep
