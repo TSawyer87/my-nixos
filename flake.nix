@@ -44,6 +44,16 @@
     host = "magic";
     username = "jr";
     system = "x86_64-linux";
+    userVars = {
+      gitEmail = "sawyerjr.25@gmail.com";
+      gitUsername = "TSawyer87";
+      editor = "hx";
+      term = "ghostty";
+      keys = "us";
+      browser = "firefox";
+      flake = "/home/jr/my-nixos";
+    };
+
     my-inputs =
       inputs
       // {
@@ -56,15 +66,6 @@
           inherit system;
         };
       };
-    userVars = {
-      gitEmail = "sawyerjr.25@gmail.com";
-      gitUsername = "TSawyer87";
-      editor = "hx";
-      term = "ghostty";
-      keys = "us";
-      browser = "firefox";
-      flake = "/home/jr/my-nixos";
-    };
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
@@ -87,12 +88,12 @@
 
     devShells.${system}.default = import ./lib/dev-shell.nix {inherit inputs;};
 
-    repl = import ./repl.nix {
-      inherit (pkgs) lib;
-      flake = self;
-      inherit pkgs;
-    };
-    inherit userVars;
+    # repl = import ./repl.nix {
+    #   inherit (pkgs) lib;
+    #   flake = self;
+    #   inherit pkgs;
+    # };
+    # inherit userVars;
 
     packages.${system} = {
       default = pkgs.buildEnv {
