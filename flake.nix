@@ -65,6 +65,12 @@
 
     devShells.${system}.default = import ./lib/dev-shell.nix {inherit inputs;};
 
+    repl = import ./repl.nix {
+      inherit (pkgs) lib;
+      flake = self;
+      pkgs = pkgs;
+    };
+
     packages.${system}.default = pkgs.buildEnv {
       name = "default-tools";
       paths = with pkgs; [
