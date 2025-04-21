@@ -6,11 +6,7 @@
 nixosConfiguration.extendModules {
   modules = [
     (
-      {
-        config,
-        pkgs,
-        ...
-      }: {
+      {pkgs, ...}: {
         virtualisation.vmVariant = {
           virtualisation.forwardPorts = [
             {

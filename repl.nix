@@ -5,7 +5,7 @@
 }: {
   inherit flake pkgs lib;
   configs = flake.nixosConfigurations;
-  userVars = flake.outputs.userVars;
+  inherit (flake.outputs) userVars;
 }
 # Accepts `lib`, `flake`, `pkgs` from `flake.nix` as arguments
 # Attributes: flake: all flake outputs (flake.outputs, flake.inputs)

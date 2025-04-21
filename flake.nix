@@ -90,7 +90,7 @@
     repl = import ./repl.nix {
       inherit (pkgs) lib;
       flake = self;
-      pkgs = pkgs;
+      inherit pkgs;
     };
     inherit userVars;
 
