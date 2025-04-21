@@ -48,7 +48,7 @@ upd:
 # Nix Repl flake:nixpkgs
 [group('nix')]
 repl:
-    source /home/jr/my-nixos && nix repl $(echo $NIX_PATH | perl -pe 's|.*(/nix/store/.*-source/repl.nix).*|\1|')
+    source /home/jr/my-nixos ; nix repl $(echo $NIX_PATH | perl -pe 's|.*(/nix/store/.*-source/repl.nix).*|\1|')
 # [group('nix')]
 # repl:
 #     nix repl -f flake:nixpkgs
