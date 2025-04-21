@@ -1,6 +1,6 @@
 {
   # pkgs,
-  inputs,
+  # inputs,
   userVars,
   config,
   ...
@@ -10,7 +10,7 @@
     ./security.nix
     ./users.nix
     ../../nixos
-    inputs.nixos-hardware.nixosModules.common-gpu-amd
+    # inputs.nixos-hardware.nixosModules.common-gpu-amd
   ];
 
   # Enable or Disable Stylix
