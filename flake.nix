@@ -69,10 +69,10 @@
     defaultConfig = import ./hosts/${host} {
       inherit my-inputs;
     };
-    # vmConfig = import ./lib/vms/nixos-vm.nix {
-    #   nixosConfiguration = defaultConfig;
-    #   inherit my-inputs;
-    # };
+    vmConfig = import ./lib/vms/nixos-vm.nix {
+      nixosConfiguration = defaultConfig;
+      inherit my-inputs;
+    };
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
@@ -88,12 +88,12 @@
 
     devShells.${system}.default = import ./lib/dev-shell.nix {inherit inputs;};
 
-    # repl = import ./repl.nix {
-    #   inherit (pkgs) lib;
-    #   flake = self;
-    #   inherit pkgs;
-    # };
-    # inherit userVars;
+    repl = import ./repl.nix {
+      inherit (pkgs) lib;
+      flake = self;
+      inherit pkgs;
+    };
+    inherit userVars;
 
     packages.${system} = {
       default = pkgs.buildEnv {
@@ -107,7 +107,7 @@
       };
       nixos = defaultConfig.config.system.build.toplevel;
       # Explicitly named VM configuration
-      # nixos-vm = vmConfig.config.system.build.vm;
+      nixos-vm = vmConfig.config.system.build.vm;
     };
 
     nixosConfigurations = {
