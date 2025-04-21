@@ -78,7 +78,7 @@
     #   config.allowUnfree = true;
     # };
 
-    treefmtEval = treefmt-nix.lib.evalModule my-inputs.pkgs ./lib/treefmt.nix;
+    treefmtEval = treefmt-nix.lib.evalModule inputs.pkgs ./lib/treefmt.nix;
   in {
     lib = my-inputs.lib;
 
