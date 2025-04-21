@@ -14,7 +14,7 @@
   ];
 
   # Enable or Disable Stylix
-  stylixModule.enable = true;
+  stylixModule.enable = false;
 
   # Enable User module
   users.enable = true;
@@ -23,7 +23,7 @@
   };
 
   # Custom Cachix enable
-  gytix.cachix.enable = false;
+  gytix.cachix.enable = true;
 
   # Custom amd module
   drivers.amdgpu.enable = true;
