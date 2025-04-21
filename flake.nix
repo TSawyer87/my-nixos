@@ -73,12 +73,12 @@
     #   nixosConfiguration = defaultConfig;
     #   inherit my-inputs;
     # };
-    # pkgs = import nixpkgs {
-    #   inherit system;
-    #   config.allowUnfree = true;
-    # };
+    pkgs = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
 
-    treefmtEval = treefmt-nix.lib.evalModule inputs.pkgs ./lib/treefmt.nix;
+    treefmtEval = treefmt-nix.lib.evalModule pkgs ./lib/treefmt.nix;
   in {
     lib = my-inputs.lib;
 
@@ -96,9 +96,9 @@
     # inherit userVars;
 
     packages.${system} = {
-      default = inputs.pkgs.buildEnv {
+      default = pkgs.buildEnv {
         name = "default-tools";
-        paths = with inputs.pkgs; [
+        paths = with pkgs; [
           helix
           git
           ripgrep
