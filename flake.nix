@@ -63,7 +63,7 @@
 
     nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
     environment.systemPackages = let
-      repl_path = toString ./.;
+      repl_path = "/home/jr/my-nixos";
       my-nix-fast-repl = pkgs.writeShellScriptBin "my-nix-fast-repl" ''
         source /etc/set-environment
         nix repl "${repl_path}/repl.nix" "$@"
