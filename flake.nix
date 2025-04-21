@@ -59,8 +59,6 @@
 
     treefmtEval = treefmt-nix.lib.evalModule pkgs ./lib/treefmt.nix;
   in {
-    nix.nixPath = let path = toString ./.; in ["repl=${path}/repl.nix" "nixpkgs=${inputs.nixpkgs}"];
-
     checks.${system}.style = treefmtEval.config.build.check self;
 
     formatter.${system} = treefmtEval.config.build.wrapper;
