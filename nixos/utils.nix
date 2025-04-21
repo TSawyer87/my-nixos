@@ -3,6 +3,7 @@
     # inputs.nix-inspect.packages.${pkgs.system}.default # util for inspecting derivations
     cheat # Display cheat sheets for commands
     sqlite
+    hugo
     nix-eval-jobs
     inxi # show detailed system info
     mkpasswd
