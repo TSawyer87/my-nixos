@@ -14,7 +14,7 @@
   ];
 
   # Enable or Disable Stylix
-  stylixModule.enable = false;
+  stylixModule.enable = true;
 
   # Enable User module
   users.enable = true;
