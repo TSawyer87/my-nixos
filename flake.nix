@@ -44,6 +44,13 @@
     host = "magic";
     username = "jr";
     system = "x86_64-linux";
+    my-inputs =
+      inputs
+      // {
+        pkgs = import inputs.nixpkgs {
+          inherit system;
+        };
+      };
     userVars = {
       gitEmail = "sawyerjr.25@gmail.com";
       gitUsername = "TSawyer87";
@@ -63,16 +70,16 @@
       config.allowUnfree = true;
     };
     defaultConfig = import ./hosts/${host} {
-      inherit inputs;
+      inherit my-inputs;
     };
     vmConfig = import ./lib/vms/nixos-vm.nix {
       nixosConfiguration = defaultConfig;
-      inherit inputs;
+      inherit my-inputs;
     };
 
     treefmtEval = treefmt-nix.lib.evalModule pkgs ./lib/treefmt.nix;
   in {
-    lib = inputs.lib;
+    lib = my-inputs.lib;
 
     checks.${system}.style = treefmtEval.config.build.check self;
 
