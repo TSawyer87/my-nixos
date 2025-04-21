@@ -66,19 +66,19 @@
           inherit system;
         };
       };
-    pkgs = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-    };
     defaultConfig = import ./hosts/${host} {
       inherit my-inputs;
     };
-    vmConfig = import ./lib/vms/nixos-vm.nix {
-      nixosConfiguration = defaultConfig;
-      inherit my-inputs;
-    };
+    # vmConfig = import ./lib/vms/nixos-vm.nix {
+    #   nixosConfiguration = defaultConfig;
+    #   inherit my-inputs;
+    # };
+    # pkgs = import nixpkgs {
+    #   inherit system;
+    #   config.allowUnfree = true;
+    # };
 
-    treefmtEval = treefmt-nix.lib.evalModule pkgs ./lib/treefmt.nix;
+    treefmtEval = treefmt-nix.lib.evalModule my-inputs.pkgs ./lib/treefmt.nix;
   in {
     lib = my-inputs.lib;
 
