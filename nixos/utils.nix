@@ -1,6 +1,9 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     # inputs.nix-inspect.packages.${pkgs.system}.default # util for inspecting derivations
+    # Rust
+    rustup
+    evcxr
     cheat # Display cheat sheets for commands
     sqlite
     hugo
