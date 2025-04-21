@@ -61,12 +61,6 @@
   in {
     # nix.nixPath = let path = toString ./.; in ["repl=${path}/repl.nix" "nixpkgs=${inputs.nixpkgs}"];
 
-    repl = import ./repl.nix {
-      inherit (pkgs) lib;
-      flake = self;
-      pkgs = pkgs;
-    };
-
     checks.${system}.style = treefmtEval.config.build.check self;
 
     formatter.${system} = treefmtEval.config.build.wrapper;
@@ -99,7 +93,16 @@
           ./hosts/${host}/configuration.nix
           home-manager.nixosModules.home-manager
           inputs.stylix.nixosModules.stylix
+
           {
+            nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+            environment.systemPackages = let
+              repl_path = toString ./.;
+              my-nix-fast-repl = pkgs.writeShellScriptBin "my-nix-fast-repl" ''
+                source /etc/set-environment
+                nix repl "${repl_path}/repl.nix" "$@"
+              '';
+            in [my-nix-fast-repl];
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${username} = import ./hosts/${host}/home.nix;
