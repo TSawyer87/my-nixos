@@ -107,6 +107,7 @@
              export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
              export FZF_DEFAULT_OPTS='-i --height=50%'
              # export HELIX_RUNTIME=~/src/helix/runtime
+             export NIX_PATH="$NIX_PATH:my-flake=flake:/home/jr/my-nixos"
     '';
     shellAliases = {
       sv = "sudo nvim";
