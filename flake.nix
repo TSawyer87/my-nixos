@@ -69,6 +69,7 @@
       inherit (pkgs) lib;
       flake = self;
       pkgs = pkgs;
+      inputs = inputs;
     };
 
     packages.${system}.default = pkgs.buildEnv {
