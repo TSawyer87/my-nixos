@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
@@ -52,13 +53,27 @@
       browser = "firefox";
       flake = "/home/jr/my-nixos";
     };
+    lib = {
+      nixOsModules = import ./nixos;
+      homeModules = import ./home;
+      inherit system;
+    };
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
     };
+    defaultConfig = import ./hosts/${host} {
+      inherit inputs;
+    };
+    vmConfig = import ./lib/vms/nixos-vm.nix {
+      nixosConfiguration = defaultConfig;
+      inherit inputs;
+    };
 
     treefmtEval = treefmt-nix.lib.evalModule pkgs ./lib/treefmt.nix;
   in {
+    lib = inputs.lib;
+
     checks.${system}.style = treefmtEval.config.build.check self;
 
     formatter.${system} = treefmtEval.config.build.wrapper;
@@ -72,14 +87,19 @@
     };
     inherit userVars;
 
-    packages.${system}.default = pkgs.buildEnv {
-      name = "default-tools";
-      paths = with pkgs; [
-        helix
-        git
-        ripgrep
-        nh
-      ];
+    packages.${system} = {
+      default = pkgs.buildEnv {
+        name = "default-tools";
+        paths = with pkgs; [
+          helix
+          git
+          ripgrep
+          nh
+        ];
+      };
+      nixos = defaultConfig.config.system.build.toplevel;
+      # Explicitly named VM configuration
+      nixos-vm = vmConfig.config.system.build.vm;
     };
 
     nixosConfigurations = {
