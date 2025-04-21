@@ -1,4 +1,5 @@
 {
+  pkgs,
   userVars,
   config,
   ...
@@ -26,6 +27,10 @@
   drivers.amdgpu.enable = true;
 
   vm.guest-services.enable = true;
+  virtualisation.libvirtd.enable = true;
+  virtualisation.qemu.package = pkgs.qemu_kvm;
+  virtualisation.qemu.options = ["-enable-kvm"];
+  virtualisation.vmVariant = "kvm"; # Optimized for KVM
   # local.hardware-clock.enable = true;
 
   # Enable Impermanence
