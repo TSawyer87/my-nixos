@@ -113,7 +113,26 @@
 
     # nixosModules = import ./nixos;
 
-    # homeManagerModules = import ./home;
+    nixosTests.testConfig = nixpkgs.nixosTest {
+      name = "test-config";
+      nodes = {
+        testVM = {pkgs, ...}: {
+          imports = [
+            ./hosts/magic/configuration.nix
+            home-manager.nixosModules.home-manager
+            inputs.stylix.nixosModules.stylix
+          ];
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+        };
+      };
+      testScript = ''
+        start_all()
+        testVM.wait_for_unit("network.target")
+        testVM.wait_for_unit("multi-user.target")
+        assert testVM.systemctl.is_active("network.target")
+      '';
+    };
 
     nixosConfigurations = {
       ${host} = nixpkgs.lib.nixosSystem {
