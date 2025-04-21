@@ -61,6 +61,12 @@
   in {
     nix.nixPath = let path = toString ./.; in ["repl=${path}/repl.nix" "nixpkgs=${inputs.nixpkgs}"];
 
+    repl = import ./repl.nix {
+      inherit (pkgs) lib;
+      flake = self;
+      nixpkgs = pkgs;
+    };
+
     checks.${system}.style = treefmtEval.config.build.check self;
 
     formatter.${system} = treefmtEval.config.build.wrapper;
