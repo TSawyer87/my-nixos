@@ -107,7 +107,7 @@
       };
       nixos = defaultConfig.config.system.build.toplevel;
       # Explicitly named VM configuration
-      nixos-vm = vmConfig.config.system.build.vm;
+      # nixos-vm = vmConfig.config.system.build.vm;
     };
 
     nixosConfigurations = {
