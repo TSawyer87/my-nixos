@@ -59,6 +59,8 @@
 
     treefmtEval = treefmt-nix.lib.evalModule pkgs ./lib/treefmt.nix;
   in {
+    nix.nixPath = let path = toString ./.; in ["repl=${path}/repl.nix" "nixpkgs=${inputs.nixpkgs}"];
+
     checks.${system}.style = treefmtEval.config.build.check self;
 
     formatter.${system} = treefmtEval.config.build.wrapper;
@@ -73,65 +75,6 @@
         ripgrep
         nh
       ];
-    };
-
-    # Linting check with deadnix
-    # deadnixCheck = pkgs.runCommand "deadnix-check" {nativeBuildInputs = [pkgs.deadnix];} ''
-    #   deadnix --fail ${self}
-    #   touch $out
-    # '';
-
-    # nixosConfig = self.nixosConfigurations.${host}.config.system.build.toplevel;
-
-    # depInject = {
-    #   pkgs,
-    #   lib,
-    #   ...
-    # }: {
-    #   options.dep-inject = lib.mkOption {
-    #     type = with lib.types; attrsOf unspecified;
-    #     default = {};
-    #   };
-    #   config.dep-inject = {
-    #     # inputs comes from the outer environment of flake.nix
-    #     flake-inputs = inputs;
-    #     userVars = userVars;
-    #   };
-    # };
-
-    # packages.x86_64-linux.helloNixosTests = pkgs.writeScriptBin "hello-nixos-tests" ''
-    #   ${pkgs.netcat}/bin/nc -l 3000
-    # '';
-
-    # nixosModules.default = {
-    #   pkgs,
-    #   lib,
-    #   ...
-    # }: {
-    #   imports = [depInject];
-    # };
-
-    # nixosModules = import ./nixos;
-
-    nixosTests.testConfig = nixpkgs.nixosTest {
-      name = "test-config";
-      nodes = {
-        testVM = {pkgs, ...}: {
-          imports = [
-            ./hosts/magic/configuration.nix
-            home-manager.nixosModules.home-manager
-            inputs.stylix.nixosModules.stylix
-          ];
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-        };
-      };
-      testScript = ''
-        start_all()
-        testVM.wait_for_unit("network.target")
-        testVM.wait_for_unit("multi-user.target")
-        assert testVM.systemctl.is_active("network.target")
-      '';
     };
 
     nixosConfigurations = {

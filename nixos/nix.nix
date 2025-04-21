@@ -20,6 +20,7 @@
     registry = {
       # self = this flake
       self.flake = inputs.self;
+      # nixpkgs.flake = inputs.nixpkgs;
     };
     # gc = {
     #   automatic = true;

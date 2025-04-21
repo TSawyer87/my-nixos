@@ -1,9 +1,5 @@
 # Virtualization / Containers
-{
-  pkgs,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   environment.systemPackages = [pkgs.qemu_kvm];
   virtualisation.libvirtd.enable = true;
   # virtualisation.qemu.package = pkgs.qemu_kvm;
