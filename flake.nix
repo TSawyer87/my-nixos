@@ -50,6 +50,11 @@
         pkgs = import inputs.nixpkgs {
           inherit system;
         };
+        lib = {
+          nixOsModules = import ./nixos;
+          homeModules = import ./home;
+          inherit system;
+        };
       };
     userVars = {
       gitEmail = "sawyerjr.25@gmail.com";
@@ -59,11 +64,6 @@
       keys = "us";
       browser = "firefox";
       flake = "/home/jr/my-nixos";
-    };
-    lib = {
-      nixOsModules = import ./nixos;
-      homeModules = import ./home;
-      inherit system;
     };
     pkgs = import nixpkgs {
       inherit system;
