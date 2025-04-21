@@ -59,7 +59,7 @@
 
     treefmtEval = treefmt-nix.lib.evalModule pkgs ./lib/treefmt.nix;
   in {
-    # nix.nixPath = let path = toString ./.; in ["repl=${path}/repl.nix" "nixpkgs=${inputs.nixpkgs}"];
+    nix.nixPath = let path = toString ./.; in ["repl=${path}/repl.nix" "nixpkgs=${inputs.nixpkgs}"];
 
     checks.${system}.style = treefmtEval.config.build.check self;
 
@@ -93,16 +93,7 @@
           ./hosts/${host}/configuration.nix
           home-manager.nixosModules.home-manager
           inputs.stylix.nixosModules.stylix
-
           {
-            nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
-            environment.systemPackages = let
-              repl_path = toString ./.;
-              my-nix-fast-repl = pkgs.writeShellScriptBin "my-nix-fast-repl" ''
-                source /etc/set-environment
-                nix repl "${repl_path}/repl.nix" "$@"
-              '';
-            in [my-nix-fast-repl];
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${username} = import ./hosts/${host}/home.nix;
