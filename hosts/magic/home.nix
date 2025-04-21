@@ -15,10 +15,7 @@
   imports = [
     ../../home
     inputs.dont-track-me.homeManagerModules.default
-    inputs.nix-index-database.hmModules.nix-index
   ];
-
-  programs.nix-index-database.comma.enable = true;
 
   dont-track-me = {
     enable = true;
