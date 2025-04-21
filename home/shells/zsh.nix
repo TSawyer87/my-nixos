@@ -110,10 +110,10 @@
     '';
     shellAliases = {
       sv = "sudo nvim";
-      fr = "nh os switch --hostname ${host} /home/${username}/flakes";
-      ft = "nh os test --hostname ${host} /home/${username}/flakes"; # dont save generation to boot menu
-      fu = "nh os switch --hostname ${host} --update /home/${username}/flakes";
-      upd = "sudo nixos-rebuild switch --upgrade --flake /home/${username}/flakes";
+      fr = "nh os switch --hostname ${host} /home/${username}/my-nixos";
+      ft = "nh os test --hostname ${host} /home/${username}/my-nixos"; # dont save generation to boot menu
+      fu = "nh os switch --hostname ${host} --update /home/${username}/my-nixos";
+      upd = "sudo nixos-rebuild switch --upgrade --flake /home/${username}/my-nixos";
       rebuild = "/home/jr/scripts/performance_hook.sh";
       ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
       opts = "man home-configuration.nix";

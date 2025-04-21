@@ -139,38 +139,14 @@
             "cargo"
           ]}
 
-                      def --env yy [...args] {
-                      	let tmp = (mktemp -t "yazi-cwd.XXXXX")
-                      	yazi ...$args --cwd-file $tmp
-                      	let cwd = (open $tmp)
-                      	if $cwd != "" and $cwd != $env.PWD {
-                      		cd $cwd
-                      	}
-                      	rm -fp $tmp
-                      }
-
-                      def to-group-name [] {
-            str replace -ra "[()'\":,;|]" "" |
-            str replace -ra '[\.\-\s]' "_"
-          }
-
-          export def jj-nu-log [
-            --revset (-r): string
-            ...columns: string
-          ] {
-            let columns = $columns | each {
-              match $in {
-                "description" => "description.lines().join(',')"
-                _ => $in
-              }
-            }
-            let parser = $columns | each { $"{($in | to-group-name)}" } | str join (char rs)
-
-            ( jj log ...(if $revset != null {[-r $revset]} else {[]})
-                 --no-graph
-                 -T $"($columns | str join $"++'(char rs)'++") ++ '\n'"
-            ) |
-            parse $parser
+          def --env yy [...args] {
+          	let tmp = (mktemp -t "yazi-cwd.XXXXX")
+          	yazi ...$args --cwd-file $tmp
+          	let cwd = (open $tmp)
+          	if $cwd != "" and $cwd != $env.PWD {
+          		cd $cwd
+          	}
+          	rm -fp $tmp
           }
         '';
       };
