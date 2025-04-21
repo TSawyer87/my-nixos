@@ -14,11 +14,9 @@
     users.users = {
       ${username} = {
         homeMode = "755";
-        # initialHashedPassword = "correcthorsebatterystaple";
         isNormalUser = true;
         description = userVars.gitUsername;
-        initialPassword = "test123";
-        hashedPassword = "$6$hLxz1nh01PVcUQ6e$4o6tYrRxbRQQFRN3NSUMkPuwdRpOhNdp1s07TAYr2shcbdQUkYurHyk8Xp8FvjVPwr60N4NSPDmwUr6Nd5FD9.";
+        initialhashedPassword = "$6$hLxz1nh01PVcUQ6e$4o6tYrRxbRQQFRN3NSUMkPuwdRpOhNdp1s07TAYr2shcbdQUkYurHyk8Xp8FvjVPwr60N4NSPDmwUr6Nd5FD9.";
         extraGroups = [
           "networkmanager"
           "wheel"

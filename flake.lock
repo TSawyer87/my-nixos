@@ -1746,11 +1746,11 @@
         "rust-overlay": "rust-overlay_4"
       },
       "locked": {
-        "lastModified": 1745234932,
-        "narHash": "sha256-aINcK8VYoK0PVtxmvd6aDzvn3uysmg9z+C4xIDqOuzo=",
+        "lastModified": 1745240671,
+        "narHash": "sha256-6r2Qmk7XsZtfPEod9Jh07Wp85bkm10yZi+LqO+GMGR8=",
         "owner": "sxyazi",
         "repo": "yazi",
-        "rev": "832782621716ca1f80efcdac9048b4d47da3999c",
+        "rev": "7169e19ff01458b25dc6d0a0489bcac3b6c02904",
         "type": "github"
       },
       "original": {
