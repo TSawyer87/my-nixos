@@ -1,6 +1,7 @@
 {
   # pkgs,
   # inputs,
+  my-inputs,
   userVars,
   config,
   ...
@@ -13,6 +14,7 @@
     # inputs.nixos-hardware.nixosModules.common-gpu-amd
   ];
 
+  nixpkgs.overlays = [my-inputs.lib.overlays];
   # Enable or Disable Stylix
   stylixModule.enable = true;
 
