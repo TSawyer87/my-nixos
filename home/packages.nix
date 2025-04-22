@@ -6,6 +6,7 @@
 }: {
   home.packages = [
     # inputs.zen-browser.packages."${pkgs.system}".default
+    pkgs.pyamdgpuinfo
     pkgs.Tela-circle-dracula
     pkgs.oh-my-zsh
     pkgs.just
