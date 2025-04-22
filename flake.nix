@@ -1,5 +1,5 @@
 {
-  description = "NixOS and Home-Manager configuration with Hugo for Reddit posts";
+  description = "NixOS and Home-Manager configuration";
 
   inputs = {
     nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
