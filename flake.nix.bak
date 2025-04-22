@@ -1,12 +1,11 @@
 {
-  description = "NixOS/Home-Manager Flake";
+  description = "NixOS and Home-Manager configuration with Hugo for Reddit posts";
 
   inputs = {
     nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nix-index-database.url = "github:nix-community/nix-index-database";
-    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     dont-track-me.url = "github:dtomvan/dont-track-me.nix/main";
     stylix.url = "github:danth/stylix";
@@ -42,9 +41,9 @@
     treefmt-nix,
     ...
   }: let
+    system = "x86_64-linux";
     host = "magic";
     username = "jr";
-    system = "x86_64-linux";
     userVars = {
       gitEmail = "sawyerjr.25@gmail.com";
       gitUsername = "TSawyer87";
@@ -54,83 +53,65 @@
       browser = "firefox";
       flake = "/home/jr/my-nixos";
     };
+
+    # Define pkgs with allowUnfree
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
     };
 
-    let depInject = { pkgs, lib, ... }: {
-  options.dep-inject = lib.mkOption {
-    type = with lib.types; attrsOf unspecified;
-    default = { };
-  };
-  config.dep-inject = {
-    # inputs comes from the outer environment of flake.nix
-    flake-inputs = inputs;
-    host = host;
-    username = username;
-    userVars = userVars;
-  };
-};
+    # Use nixpkgs.lib directly
+    inherit (nixpkgs) lib;
 
+    # Formatter configuration
     treefmtEval = treefmt-nix.lib.evalModule pkgs ./lib/treefmt.nix;
   in {
-  nixosModules.default = { pkgs, lib, ... }: {
-      imports = [ depInject ];
-    };
-
-    checks.${system}.style = treefmtEval.config.build.check self;
-
+    # Formatter for nix fmt
     formatter.${system} = treefmtEval.config.build.wrapper;
 
+    # Style check for CI
+    checks.${system}.style = treefmtEval.config.build.check self;
+
+    # Development shell
     devShells.${system}.default = import ./lib/dev-shell.nix {inherit inputs;};
 
-    packages.${system}.default = pkgs.buildEnv {
-      name = "default-tools";
-      paths = with pkgs; [
-        helix
-        git
-        ripgrep
-        nh
-      ];
+    # REPL for debugging
+    repl = import ./repl.nix {
+      inherit pkgs lib;
+      flake = self;
     };
 
+    # User variables for modules
+    inherit userVars;
 
-    nixosConfigurations = {
-      ${host} = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit
-            inputs
-            username
-            system
-            host
-            userVars
-            ;
-        };
-        modules = [
-          ./hosts/${host}/configuration.nix
-          home-manager.nixosModules.home-manager
-          inputs.stylix.nixosModules.stylix
-          # enable dep-inject
-          self.nixosModules.default
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${username} = import ./hosts/${host}/home.nix;
-            home-manager.backupFileExtension = "backup";
-            home-manager.extraSpecialArgs = {
-              inherit
-                inputs
-                username
-                system
-                host
-                userVars
-                ;
-            };
-          }
-        ];
+    # Default package for tools
+    packages.${system} = {
+      default = pkgs.buildEnv {
+        name = "default-tools";
+        paths = with pkgs; [helix git ripgrep nh];
       };
+    };
+
+    # NixOS configuration
+    nixosConfigurations.${host} = lib.nixosSystem {
+      inherit system;
+      specialArgs = {
+        inherit inputs username system host userVars;
+      };
+      modules = [
+        ./hosts/${host}/configuration.nix
+        home-manager.nixosModules.home-manager
+        inputs.stylix.nixosModules.stylix
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.${username} = import ./hosts/${host}/home.nix;
+          home-manager.backupFileExtension = "backup";
+          home-manager.extraSpecialArgs = {
+            inherit inputs username system host userVars;
+          };
+        }
+      ];
     };
   };
 }
