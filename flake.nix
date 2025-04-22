@@ -57,13 +57,13 @@
       my-inputs
       // {
         pkgs = import inputs.nixpkgs {
-          inherit system host userVars;
+          inherit system;
         };
         lib = {
           overlays = import ./lib/overlay.nix;
           nixOsModules = import ./nixos;
           homeModules = import ./home;
-          inherit system userVars;
+          inherit system;
         };
       };
 

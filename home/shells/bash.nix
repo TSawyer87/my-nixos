@@ -1,8 +1,4 @@
-{
-  host,
-  username,
-  ...
-}: {
+{...}: {
   programs.bash = {
     enable = true;
     enableCompletion = true;
@@ -28,8 +24,8 @@
     '';
     shellAliases = {
       sv = "sudo nvim";
-      fr = "nh os switch --hostname ${host} /home/jr/my-nixos";
-      fu = "nh os switch --hostname ${host} --update /home/jr/my-nixos";
+      fr = "nh os switch --hostname magic /home/jr/my-nixos";
+      fu = "nh os switch --hostname magic --update /home/jr/my-nixos";
       ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
       v = "nvim";
       cat = "bat";
