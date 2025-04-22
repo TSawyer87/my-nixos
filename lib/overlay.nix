@@ -1,4 +1,4 @@
-final: prev: let
+_final: prev: let
   # Helper function to import a package
   callPackage = prev.lib.callPackageWith (prev // packages);
 

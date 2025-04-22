@@ -65,11 +65,11 @@
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
-      overlays = overlays;
+      inherit overlays;
     };
 
     # Preserve nixpkgs.lib
-    lib = nixpkgs.lib;
+    inherit (nixpkgs) lib;
 
     # Custom inputs for hosts/magic
     my-inputs =
