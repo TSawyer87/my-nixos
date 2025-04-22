@@ -20,9 +20,9 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = {inherit pkgs;};
+    extraSpecialArgs = {inherit inputs;};
     users.jr = {...}: {
-      imports = [./home.nix];
+      imports = [./home.nix inputs.lib.hmModules];
     };
   };
 
