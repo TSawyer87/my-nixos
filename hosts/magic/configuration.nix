@@ -1,6 +1,5 @@
 {
   # pkgs,
-  inputs,
   my-inputs,
   userVars,
   config,
@@ -11,8 +10,8 @@
     ./security.nix
     ./users.nix
     ../../nixos
-    inputs.nixos-hardware.nixosModules.common-gpu-amd
-    inputs.stylix.nixosModules.stylix
+    my-inputs.nixos-hardware.nixosModules.common-gpu-amd
+    my-inputs.stylix.nixosModules.stylix
   ];
 
   nixpkgs.overlays = [my-inputs.lib.overlays];
