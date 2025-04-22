@@ -54,6 +54,23 @@
       flake = builtins.getEnv "HOME" + "/my-nixos";
     };
 
+    my-inputs =
+      inputs
+      // {
+        pkgs = import inputs.nixpkgs {
+          inherit system;
+        };
+        lib = {
+          overlays = import ./lib/overlay.nix;
+          nixOsModules = import ./nixos;
+          homeModules = import ./home;
+          inherit system;
+        };
+      };
+
+    defaultConfig = import ./hosts/magic {
+      inherit my-inputs;
+    };
     # Define pkgs with allowUnfree
     pkgs = import inputs.nixpkgs {
       inherit system;
@@ -84,9 +101,12 @@
     };
 
     # Default package for tools
-    packages.${system}.default = pkgs.buildEnv {
-      name = "default-tools";
-      paths = with pkgs; [helix git ripgrep nh];
+    packages.${system} = {
+      default = pkgs.buildEnv {
+        name = "default-tools";
+        paths = with pkgs; [helix git ripgrep nh];
+      };
+      nixos = defaultConfig.config.system.build.toplevel;
     };
 
     # Custom outputs in legacyPackages
