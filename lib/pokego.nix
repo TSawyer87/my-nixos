@@ -1,143 +1,38 @@
 {
-  description = "NixOS/Home-Manager Flake";
+  lib,
+  buildGoModule,
+  fetchFromGitHub,
+}:
+buildGoModule rec {
+  pname = "pokego";
+  version = "0.3.0";
 
-  inputs = {
-    nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    dont-track-me.url = "github:dtomvan/dont-track-me.nix/main";
-    stylix.url = "github:danth/stylix";
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
-    nvf = {
-      url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    helix = {
-      url = "github:helix-editor/helix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    yazi.url = "github:sxyazi/yazi";
-    wezterm.url = "github:wezterm/wezterm?dir=nix";
-    wallpapers = {
-      url = "git+ssh://git@github.com/TSawyer87/wallpapers.git";
-      flake = false;
-    };
+  src = fetchFromGitHub {
+    owner = "rubiin";
+    repo = "pokego";
+    rev = "v${version}";
+    hash = "sha256-cFpEi8wBdCzAl9dputoCwy8LeGyK3UF2vyylft7/1wY=";
   };
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    home-manager,
-    treefmt-nix,
-    ...
-  }: let
-    host = "magic";
-    username = "jr";
-    system = "x86_64-linux";
-    userVars = {
-      gitEmail = "sawyerjr.25@gmail.com";
-      gitUsername = "TSawyer87";
-      editor = "hx";
-      term = "ghostty";
-      keys = "us";
-      browser = "firefox";
-      flake = "/home/jr/my-nixos";
-    };
+  vendorHash = "sha256-7SoKHH+tDJKhUQDoVwAzVZXoPuKNJEHDEyQ77BPEDQ0=";
 
-    # Define overlays
-    overlays = [
-      inputs.neovim-nightly-overlay.overlays.default
-      inputs.helix.overlays.default
-      (import ./lib/overlay.nix) # Your custom overlay
+  # Install shell completions
+  postInstall = ''
+    install -Dm644 completions/pokego.bash "$out/share/bash-completion/completions/pokego"
+    install -Dm644 completions/pokego.fish "$out/share/fish/vendor_completions.d/pokego.fish"
+    install -Dm644 completions/pokego.zsh "$out/share/zsh/site-functions/_pokego"
+  '';
+
+  meta = with lib; {
+    description = "Command-line tool that lets you display Pokémon sprites in color directly in your terminal";
+    homepage = "https://github.com/rubiin/pokego";
+    license = licenses.gpl3Only;
+    maintainers = with maintainers; [
+      rubiin
+      jameskim0987
+      vinibispo
     ];
-
-    # Create pkgs with overlays
-    pkgs = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-      inherit overlays;
-    };
-
-    # Preserve nixpkgs.lib
-    inherit (nixpkgs) lib;
-
-    # Custom inputs for hosts/magic
-    my-inputs =
-      inputs
-      // {
-        inherit pkgs lib;
-        nixOsModules = import ./nixos;
-        homeModules = import ./home;
-      };
-
-    defaultConfig = import ./hosts/magic {
-      inherit my-inputs;
-    };
-
-    treefmtEval = treefmt-nix.lib.evalModule pkgs ./lib/treefmt.nix;
-  in {
-    lib = my-inputs;
-
-    checks.${system}.style = treefmtEval.config.build.check self;
-
-    formatter.${system} = treefmtEval.config.build.wrapper;
-
-    devShells.${system}.default = import ./lib/dev-shell.nix {inherit inputs;};
-
-    repl = import ./repl.nix {
-      inherit (pkgs) lib;
-      flake = self;
-      inherit pkgs;
-    };
-
-    inherit userVars;
-
-    packages.${system} = {
-      default = pkgs.buildEnv {
-        name = "default-tools";
-        paths = with pkgs; [
-          helix
-          git
-          ripgrep
-          nh
-          pokego # Added from overlay
-        ];
-      };
-
-      nixos = defaultConfig.config.system.build.toplevel;
-    };
-
-    nixosConfigurations = {
-      ${host} = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs username system host userVars pkgs lib;
-        };
-        modules = [
-          ./hosts/${host}/configuration.nix
-          home-manager.nixosModules.home-manager
-          inputs.stylix.nixosModules.stylix
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${username} = import ./hosts/${host}/home.nix;
-            home-manager.backupFileExtension = "backup";
-            home-manager.extraSpecialArgs = {
-              inherit inputs username system host userVars pkgs lib;
-            };
-          }
-        ];
-      };
-    };
+    mainProgram = "pokego";
+    platforms = platforms.all;
   };
 }
