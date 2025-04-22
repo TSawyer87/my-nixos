@@ -37,7 +37,6 @@
   outputs = my-inputs @ {
     self,
     nixpkgs,
-    home-manager,
     treefmt-nix,
     ...
   }: let
@@ -64,7 +63,7 @@
           overlays = import ./lib/overlay.nix;
           nixOsModules = import ./nixos;
           homeModules = import ./home;
-          inherit system userVars;
+          inherit system userVars username;
         };
       };
 

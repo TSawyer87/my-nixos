@@ -22,7 +22,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = {inherit pkgs inputs username host system userVars;};
-    users.jr = {...}: {
+    users.username = {...}: {
       imports = [./home.nix];
     };
   };
