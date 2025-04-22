@@ -15,8 +15,6 @@
     inputs.home-manager.nixosModules.home-manager
   ];
 
-  nixpkgs.pkgs = pkgs;
-
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
