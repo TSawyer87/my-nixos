@@ -107,7 +107,7 @@
         type = "app";
         program = toString (pkgs.writeScript "render-reddit-post" ''
           #!/bin/sh
-          cd ${./reddit-posts}
+          cd ${../reddit-posts}
           ${pkgs.hugo}/bin/hugo
           echo "HTML output in reddit-posts/public/posts/"
         '');
@@ -116,7 +116,7 @@
         type = "app";
         program = toString (pkgs.writeScript "preview-reddit-post" ''
           #!/bin/sh
-          cd ${./reddit-posts}
+          cd ${../reddit-posts}
           ${pkgs.hugo}/bin/hugo server
         '');
       };
