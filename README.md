@@ -10,7 +10,7 @@
 
 - `nix run .#deploy-nixos` build-and-deploy script
 
-- `nix repl .#repl`: Load flake into repl
+- `nix repl .#repl`: Load flake into repl or `nixos-rebuild repl --flake .`
 
 - `nix fmt`: When run in root of flake it will format the whole configuration
 

@@ -1,5 +1,5 @@
 {
-  # pkgs,
+  pkgs,
   inputs,
   # userVars,
   config,
@@ -12,7 +12,19 @@
     ../../nixos
     inputs.nixos-hardware.nixosModules.common-gpu-amd
     inputs.stylix.nixosModules.stylix
+    inputs.home-manager.nixosModules.home-manager
   ];
+
+  nixpkgs.pkgs = pkgs;
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = {inherit pkgs;};
+    users.jr = {...}: {
+      imports = [./home.nix];
+    };
+  };
 
   nixpkgs.overlays = [inputs.lib.overlays];
   # Enable or Disable Stylix
