@@ -8,6 +8,8 @@
     sqlite
     hugo
     nix-eval-jobs
+    nix-diff
+    nix-tree
     inxi # show detailed system info
     mkpasswd
     wget
