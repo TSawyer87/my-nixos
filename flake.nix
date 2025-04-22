@@ -114,22 +114,6 @@
       inherit userVars repl;
     };
 
-    # Apps for formatting diff
-    apps.${system}.diff-nix-fmt = {
-      type = "app";
-      program = toString (pkgs.writeScript "diff-nix-fmt" ''
-        #!/bin/sh
-        set -e
-        tmp_dir=$(mktemp -d)
-        cp -r . $tmp_dir
-        cd $tmp_dir
-        ${pkgs.nix}/bin/nix fmt
-        diff -r --color=auto . ${self} | less
-        cd ${self}
-        rm -rf $tmp_dir
-      '');
-    };
-
     # NixOS configuration
     nixosConfigurations.${host} = lib.nixosSystem {
       inherit system;
