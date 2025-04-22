@@ -1,10 +1,6 @@
-{
-  inputs,
-  userVars,
-  ...
-}:
+{inputs, ...}:
 inputs.nixpkgs.lib.nixosSystem {
-  inherit (inputs.lib) system userVars;
-  specialArgs = {inherit inputs userVars;};
+  inherit (inputs.lib) system;
+  specialArgs = {inherit inputs;};
   modules = [./configuration.nix];
 }
