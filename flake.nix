@@ -53,38 +53,33 @@
       browser = "firefox";
       flake = "/home/jr/my-nixos";
     };
+    # my-inputs =
+    #   inputs
+    #   // {
+    #     pkgs = import inputs.nixpkgs {
+    #       inherit system;
+    #     };
+    #     lib = {
+    #       nixOsModules = import ./nixos;
+    #       homeModules = import ./home;
+    #       overlays = import ./lib/overlay.nix;
+    #     };
+    #   };
 
-    # Use nixpkgs.lib directly
-    lib = nixpkgs.lib;
-
-    # Define overlays
-    overlays = [
-      inputs.neovim-nightly-overlay.overlays.default
-      inputs.helix.overlays.default
-      (import ./lib/overlay.nix)
-    ];
+    # defaultConfig = import ./hosts/magic {
+    #   inherit my-inputs;
+    # };
 
     # Create pkgs with overlays
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
-      overlays = overlays;
     };
-
-    # Custom inputs for hosts/magic
-    my-inputs = {
-      inherit inputs pkgs lib;
-      nixOsModules = import ./nixos;
-      homeModules = import ./home;
-    };
-
-    defaultConfig = import ./hosts/magic {
-      inherit my-inputs;
-    };
+    lib = nixpkgs.lib;
 
     treefmtEval = treefmt-nix.lib.evalModule pkgs ./lib/treefmt.nix;
   in {
-    lib = my-inputs; # Maintain compatibility with existing references
+    lib = lib;
 
     checks.${system}.style = treefmtEval.config.build.check self;
 
@@ -93,10 +88,9 @@
     devShells.${system}.default = import ./lib/dev-shell.nix {inherit inputs;};
 
     repl = import ./repl.nix {
-      inherit lib pkgs;
+      inherit pkgs;
       flake = self;
     };
-
     inherit userVars;
 
     packages.${system} = {
@@ -111,14 +105,14 @@
         ];
       };
 
-      nixos = defaultConfig.config.system.build.toplevel;
+      # nixos = defaultConfig.config.system.build.toplevel;
     };
 
     nixosConfigurations = {
       ${host} = lib.nixosSystem {
         inherit system;
         specialArgs = {
-          inherit inputs username system host userVars pkgs lib;
+          inherit inputs username system host userVars;
         };
         modules = [
           ./hosts/${host}/configuration.nix
@@ -130,7 +124,7 @@
             home-manager.users.${username} = import ./hosts/${host}/home.nix;
             home-manager.backupFileExtension = "backup";
             home-manager.extraSpecialArgs = {
-              inherit inputs username system host userVars pkgs lib;
+              inherit inputs username system host userVars;
             };
           }
         ];
