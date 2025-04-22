@@ -58,7 +58,7 @@
       inputs
       // {
         pkgs = import inputs.nixpkgs {
-          inherit system;
+          inherit system host username userVars;
         };
         lib = {
           overlays = import ./lib/overlay.nix;
