@@ -49,7 +49,7 @@ nixosConfiguration.extendModules {
             ];
           };
 
-          system.stateVersion = "25.05";
+          system.stateVersion = "24.11";
         };
 
         # Enable SSH server
