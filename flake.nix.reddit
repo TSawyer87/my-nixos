@@ -90,6 +90,48 @@
         name = "default-tools";
         paths = with pkgs; [helix git ripgrep nh];
       };
+
+      # Hugo site for Reddit posts
+      reddit-posts = pkgs.stdenv.mkDerivation {
+        name = "reddit-posts";
+        src = ./reddit-posts;
+        buildInputs = [pkgs.hugo];
+        buildPhase = "${pkgs.hugo}/bin/hugo";
+        installPhase = "mkdir -p $out; cp -r public/* $out";
+      };
+    };
+
+    # Apps for rendering and deploying Hugo posts
+    apps.${system} = {
+      render-reddit-post = {
+        type = "app";
+        program = toString (pkgs.writeScript "render-reddit-post" ''
+          #!/bin/sh
+          cd ${../reddit-posts}
+          ${pkgs.hugo}/bin/hugo
+          echo "HTML output in reddit-posts/public/posts/"
+        '');
+      };
+      preview-reddit-post = {
+        type = "app";
+        program = toString (pkgs.writeScript "preview-reddit-post" ''
+          #!/bin/sh
+          cd ${../reddit-posts}
+          ${pkgs.hugo}/bin/hugo server
+        '');
+      };
+      deploy-reddit-post = {
+        type = "app";
+        program = toString (pkgs.writeScript "deploy-reddit-post" ''
+          #!/bin/sh
+          cd ${./reddit-posts}
+          ${pkgs.hugo}/bin/hugo
+          git add .
+          git commit -m "Deploy Hugo site"
+          git push
+          echo "Deployed to https://<your-username>.github.io/reddit-posts/"
+        '');
+      };
     };
 
     # NixOS configuration
