@@ -1,7 +1,6 @@
 {
   pkgs,
   inputs,
-  my-inputs,
   config,
   lib,
   ...
@@ -17,7 +16,7 @@ with lib; {
     stylix = {
       enable = true;
       # image = ../modules/wallpapers/Lofi-Cafe1.png;
-      image = "${my-inputs.wallpapers}/Lofi-Cafe1.png";
+      image = "${inputs.wallpapers}/Lofi-Cafe1.png";
       base16Scheme = {
         # Ayu Dark
         base00 = "0F1419";
@@ -99,7 +98,7 @@ with lib; {
       opacity.terminal = 0.8;
       # cursor.package = pkgs.bibata-cursors;
       # cursor.name = "Bibata-Modern-Ice";
-      cursor.package = my-inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default;
+      cursor.package = inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default;
       cursor.name = "BreezeX-RosePine-Linux";
       cursor.size = 26;
       fonts = {
