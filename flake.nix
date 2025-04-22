@@ -57,7 +57,8 @@
     my-inputs =
       inputs
       // {
-        pkgs = import inputs.nixpkgs {
+        # pkgs = import inputs.nixpkgs {
+        pkgs = pkgs {
           inherit system;
         };
         lib = {
@@ -124,6 +125,8 @@
             system
             host
             userVars
+            pkgs
+            lib
             ;
         };
         modules = [
