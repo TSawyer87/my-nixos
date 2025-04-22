@@ -8,6 +8,7 @@
     # inputs.zen-browser.packages."${pkgs.system}".default
     pkgs.nwg-look
     pkgs.python-pyamdgpuinfo # AMD GPU Information library
+    pkgs.pokego
     pkgs.Tela-circle-dracula
     pkgs.oh-my-zsh
     pkgs.just
