@@ -54,37 +54,37 @@
       flake = "/home/jr/my-nixos";
     };
 
-    my-inputs =
-      inputs
-      // {
-        # pkgs = import inputs.nixpkgs {
-        pkgs = pkgs {
-          inherit system;
-        };
-        lib = {
-          nixOsModules = import ./nixos;
-          homeModules = import ./home;
-          overlays = import ./lib/overlay.nix;
-          inherit system;
-        };
-      };
+    # Use nixpkgs.lib directly
+    lib = nixpkgs.lib;
+
+    # Define overlays
+    overlays = [
+      inputs.neovim-nightly-overlay.overlays.default
+      inputs.helix.overlays.default
+      (import ./lib/overlay.nix)
+    ];
+
+    # Create pkgs with overlays
+    pkgs = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+      overlays = overlays;
+    };
+
+    # Custom inputs for hosts/magic
+    my-inputs = {
+      inherit inputs pkgs lib;
+      nixOsModules = import ./nixos;
+      homeModules = import ./home;
+    };
 
     defaultConfig = import ./hosts/magic {
       inherit my-inputs;
     };
-    # vmConfig = import ./lib/vms/nixos-vm.nix {
-    #   nixosConfiguration = defaultConfig;
-    #   inherit my-inputs;
-    # };
-    pkgs = import nixpkgs {
-      config.allowUnfree = true;
-      overlays = import ./lib/overlay.nix;
-      inherit system;
-    };
 
     treefmtEval = treefmt-nix.lib.evalModule pkgs ./lib/treefmt.nix;
   in {
-    lib = my-inputs.lib;
+    lib = my-inputs; # Maintain compatibility with existing references
 
     checks.${system}.style = treefmtEval.config.build.check self;
 
@@ -93,10 +93,10 @@
     devShells.${system}.default = import ./lib/dev-shell.nix {inherit inputs;};
 
     repl = import ./repl.nix {
-      inherit (pkgs) lib;
+      inherit lib pkgs;
       flake = self;
-      inherit pkgs;
     };
+
     inherit userVars;
 
     packages.${system} = {
@@ -107,45 +107,30 @@
           git
           ripgrep
           nh
+          pokego # From overlay
         ];
       };
 
       nixos = defaultConfig.config.system.build.toplevel;
-      # Explicitly named VM configuration
-      # nixos-vm = vmConfig.config.system.build.vm;
     };
 
     nixosConfigurations = {
-      ${host} = nixpkgs.lib.nixosSystem {
+      ${host} = lib.nixosSystem {
         inherit system;
         specialArgs = {
-          inherit
-            inputs
-            username
-            system
-            host
-            userVars
-            pkgs
-            lib
-            ;
+          inherit inputs username system host userVars pkgs lib;
         };
         modules = [
           ./hosts/${host}/configuration.nix
           home-manager.nixosModules.home-manager
-          my-inputs.stylix.nixosModules.stylix
+          inputs.stylix.nixosModules.stylix
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${username} = import ./hosts/${host}/home.nix;
             home-manager.backupFileExtension = "backup";
             home-manager.extraSpecialArgs = {
-              inherit
-                inputs
-                username
-                system
-                host
-                userVars
-                ;
+              inherit inputs username system host userVars pkgs lib;
             };
           }
         ];
