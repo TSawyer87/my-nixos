@@ -98,7 +98,7 @@
     nixosConfigurations.${host} = lib.nixosSystem {
       inherit system;
       specialArgs = {
-        inherit inputs username system host userVars pkgs lib;
+        inherit inputs username system host userVars;
       };
       modules = [
         ./hosts/${host}/configuration.nix
@@ -110,7 +110,7 @@
           home-manager.users.${username} = import ./hosts/${host}/home.nix;
           home-manager.backupFileExtension = "backup";
           home-manager.extraSpecialArgs = {
-            inherit inputs username system host userVars pkgs lib;
+            inherit inputs username system host userVars;
           };
         }
       ];
