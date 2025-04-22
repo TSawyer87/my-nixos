@@ -51,11 +51,11 @@
       term = "ghostty";
       keys = "us";
       browser = "firefox";
-      flake = "/home/jr/my-nixos";
+      flake = builtins.getEnv "HOME" + "/my-nixos";
     };
 
     # Define pkgs with allowUnfree
-    pkgs = import nixpkgs {
+    pkgs = import inputs.nixpkgs {
       inherit system;
       config.allowUnfree = true;
     };
