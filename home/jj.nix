@@ -1,5 +1,5 @@
 {
-  userVars,
+  # userVars,
   pkgs,
   ...
 }: {
@@ -16,8 +16,8 @@
       enable = true;
       settings = {
         user = {
-          email = userVars.gitEmail;
-          name = userVars.gitUsername;
+          email = "sawyerjr.25@gmail.com";
+          name = "TSawyer87";
         };
         ui = {
           default-command = [
