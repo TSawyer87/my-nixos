@@ -6,6 +6,7 @@
 }: {
   home.packages = [
     # inputs.zen-browser.packages."${pkgs.system}".default
+    pkgs.nwg-look
     pkgs.python-pyamdgpuinfo # AMD GPU Information library
     pkgs.Tela-circle-dracula
     pkgs.oh-my-zsh
