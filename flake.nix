@@ -61,7 +61,7 @@
     };
 
     # Use nixpkgs.lib directly
-    lib = nixpkgs.lib;
+    inherit (nixpkgs) lib;
 
     # Formatter configuration
     treefmtEval = treefmt-nix.lib.evalModule pkgs ./lib/treefmt.nix;
@@ -73,7 +73,7 @@
     checks.${system}.style = treefmtEval.config.build.check self;
 
     # Development shell
-    devShells.${system}.default = import ./lib/dev-shell.nix {inherit inputs pkgs;};
+    devShells.${system}.default = import ./lib/dev-shell.nix {inherit inputs;};
 
     # REPL for debugging
     repl = import ./repl.nix {
