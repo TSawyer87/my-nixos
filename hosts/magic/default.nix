@@ -4,7 +4,7 @@
   ...
 }:
 inputs.nixpkgs.lib.nixosSystem {
-  inherit (inputs.lib) system host;
-  specialArgs = {inherit inputs userVars;};
+  inherit (inputs.lib) system host userVars;
+  specialArgs = {inherit inputs;};
   modules = [./configuration.nix];
 }
