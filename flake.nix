@@ -64,7 +64,7 @@
           overlays = import ./lib/overlay.nix;
           nixOsModules = import ./nixos;
           homeModules = import ./home;
-          inherit system;
+          inherit system userVars;
         };
       };
 
