@@ -117,6 +117,16 @@
         nix build .#nixos
         sudo ./result/bin/switch-to-configuration switch
       '');
+      meta = {
+        description = "Build and deploy NixOS configuration using nix build";
+        license = lib.licenses.mit;
+        maintainers = [
+          {
+            name = "TSawyer87";
+            email = "sawyerjr.25@gmail.com";
+          }
+        ];
+      };
     };
 
     # Custom outputs in legacyPackages
