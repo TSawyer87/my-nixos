@@ -3,7 +3,6 @@
   lib,
   config,
   userVars,
-  username,
   ...
 }: {
   options = {
@@ -12,7 +11,8 @@
 
   config = lib.mkIf config.users.enable {
     users.users = {
-      ${username} = {
+      # ${username} = {
+      jr = {
         homeMode = "755";
         isNormalUser = true;
         description = userVars.gitUsername;
