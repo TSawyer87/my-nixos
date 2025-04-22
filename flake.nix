@@ -2,12 +2,31 @@
   description = "NixOS and Home-Manager configuration with Hugo for Reddit posts";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    dont-track-me.url = "github:dtomvan/dont-track-me.nix/main";
     stylix.url = "github:danth/stylix";
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    helix = {
+      url = "github:helix-editor/helix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    yazi.url = "github:sxyazi/yazi";
+    wezterm.url = "github:wezterm/wezterm?dir=nix";
     wallpapers = {
       url = "git+ssh://git@github.com/TSawyer87/wallpapers.git";
       flake = false;
