@@ -1,6 +1,8 @@
 {
   pkgs,
   inputs,
+  username,
+  host,
   # userVars,
   config,
   ...
@@ -18,7 +20,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = {inherit pkgs inputs;};
+    extraSpecialArgs = {inherit pkgs inputs username host;};
     users.jr = {...}: {
       imports = [./home.nix];
     };
