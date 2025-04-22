@@ -6,7 +6,7 @@
 }: {
   home.packages = [
     # inputs.zen-browser.packages."${pkgs.system}".default
-    pkgs.pyamdgpuinfo
+    pkgs.python-pyamdgpuinfo # AMD GPU Information library
     pkgs.Tela-circle-dracula
     pkgs.oh-my-zsh
     pkgs.just
@@ -15,6 +15,7 @@
     pkgs.iotop # io monitoring
     pkgs.iftop # network monitoring
     pkgs.usbutils # lsusb
+    pkgs.lm_sensors # sensors information lib
     pkgs.nitch
     pkgs.nix-fast-build
     (import ../scripts/emopicker9000.nix {inherit pkgs;})
