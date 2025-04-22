@@ -128,8 +128,8 @@
         license = lib.licenses.mit;
         maintainers = [
           {
-            name = "TSawyer87";
-            email = "sawyerjr.25@gmail.com";
+            name = userVars.gitUsername;
+            email = userVars.gitEmail;
           }
         ];
       };
