@@ -106,7 +106,17 @@
         name = "default-tools";
         paths = with pkgs; [helix git ripgrep nh];
       };
+      # build and deploy with `nix build .#nixos`
       nixos = defaultConfig.config.system.build.toplevel;
+    };
+
+    apps.${system}.deploy-nixos = {
+      type = "app";
+      program = toString (pkgs.writeScript "deploy-nixos" ''
+        #!/bin/sh
+        nix build .#nixos
+        sudo ./result/bin/switch-to-configuration switch
+      '');
     };
 
     # Custom outputs in legacyPackages
