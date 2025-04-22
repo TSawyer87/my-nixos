@@ -6,8 +6,6 @@
 }: {
   home.packages = [
     # inputs.zen-browser.packages."${pkgs.system}".default
-    pkgs.pokego
-    pkgs.python-pyamdgpuinfo
     pkgs.oh-my-zsh
     pkgs.just
     pkgs.fzf
