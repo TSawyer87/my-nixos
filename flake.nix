@@ -63,10 +63,12 @@
         lib = {
           nixOsModules = import ./nixos;
           homeModules = import ./home;
+          overlays = import ./lib/overlay.nix;
           inherit system;
         };
       };
-    defaultConfig = import ./hosts/${host} {
+
+    defaultConfig = import ./hosts/magic {
       inherit my-inputs;
     };
     # vmConfig = import ./lib/vms/nixos-vm.nix {
@@ -105,6 +107,7 @@
           nh
         ];
       };
+
       nixos = defaultConfig.config.system.build.toplevel;
       # Explicitly named VM configuration
       # nixos-vm = vmConfig.config.system.build.vm;
@@ -125,7 +128,7 @@
         modules = [
           ./hosts/${host}/configuration.nix
           home-manager.nixosModules.home-manager
-          inputs.stylix.nixosModules.stylix
+          (inputs.stylix.nixosModules.stylix {pkgs = pkgs;})
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;

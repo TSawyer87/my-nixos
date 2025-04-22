@@ -72,12 +72,6 @@
     userVars = userVars;
   };
 };
-in {
-  nixosModules.default = { pkgs, lib, ... }: {
-    imports = [ depInject ];
-  };
-}
-
 
     treefmtEval = treefmt-nix.lib.evalModule pkgs ./lib/treefmt.nix;
   in {
