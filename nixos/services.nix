@@ -1,9 +1,9 @@
-{userVars, ...}: {
+{...}: {
   services = {
     xserver = {
       enable = false;
       xkb = {
-        layout = userVars.keys;
+        layout = "us";
         variant = "us";
       };
     };
