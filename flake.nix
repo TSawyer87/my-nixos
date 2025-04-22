@@ -34,7 +34,7 @@
     };
   };
 
-  outputs = inputs @ {
+  outputs = my-inputs @ {
     self,
     nixpkgs,
     home-manager,
@@ -54,8 +54,8 @@
       flake = builtins.getEnv "HOME" + "/my-nixos";
     };
 
-    my-inputs =
-      inputs
+    inputs =
+      my-inputs
       // {
         pkgs = import inputs.nixpkgs {
           inherit system host username userVars;
@@ -69,7 +69,7 @@
       };
 
     defaultConfig = import ./hosts/magic {
-      inherit my-inputs;
+      inherit inputs;
     };
     # Define pkgs with allowUnfree
     pkgs = import inputs.nixpkgs {

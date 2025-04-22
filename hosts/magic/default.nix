@@ -1,6 +1,6 @@
-{my-inputs, ...}:
-my-inputs.nixpkgs.lib.nixosSystem {
-  inherit (my-inputs.lib) system;
-  specialArgs = {inherit my-inputs;};
+{inputs, ...}:
+inputs.nixpkgs.lib.nixosSystem {
+  inherit (inputs.lib) system;
+  specialArgs = {inherit inputs;};
   modules = [./configuration.nix];
 }
