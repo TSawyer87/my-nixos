@@ -137,7 +137,7 @@
     nixosConfigurations.${host} = lib.nixosSystem {
       inherit system;
       specialArgs = {
-        inherit inputs username system host userVars;
+        inherit inputs system host userVars;
       };
       modules = [
         ./hosts/${host}/configuration.nix
