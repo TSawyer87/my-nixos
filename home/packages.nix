@@ -6,7 +6,7 @@
 }: {
   home.packages = [
     # inputs.zen-browser.packages."${pkgs.system}".default
-    pkgs.pokeget
+    pkgs.pokego
     pkgs.oh-my-zsh
     pkgs.just
     pkgs.fzf
