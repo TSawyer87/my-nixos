@@ -28,8 +28,8 @@
     '';
     shellAliases = {
       sv = "sudo nvim";
-      fr = "nh os switch --hostname ${host} /home/${username}/my-nixos";
-      fu = "nh os switch --hostname ${host} --update /home/${username}/my-nixos";
+      fr = "nh os switch --hostname ${host} /home/jr/my-nixos";
+      fu = "nh os switch --hostname ${host} --update /home/jr/my-nixos";
       ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
       v = "nvim";
       cat = "bat";
