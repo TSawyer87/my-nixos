@@ -68,7 +68,7 @@
       };
 
     defaultConfig = import ./hosts/magic {
-      inherit inputs;
+      inherit inputs userVars;
     };
     # Define pkgs with allowUnfree
     pkgs = import inputs.nixpkgs {
