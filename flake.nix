@@ -42,8 +42,8 @@
   }: let
     system = "x86_64-linux";
     host = "magic";
-    username = "jr";
     userVars = {
+      username = "jr";
       gitEmail = "sawyerjr.25@gmail.com";
       gitUsername = "TSawyer87";
       editor = "hx";
