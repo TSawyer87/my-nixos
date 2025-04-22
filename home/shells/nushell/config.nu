@@ -162,6 +162,7 @@ set matchit_keybinding
 
 # alias gd = git diff
 nitch
+pokego --random 1-3
 # fastfetch
 
 source ~/flakes/homeManagerModules/nushell/zoxide.nu
