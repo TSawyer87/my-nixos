@@ -1,8 +1,4 @@
-{
-  pkgs,
-  host,
-  ...
-}: {
+{pkgs, ...}: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -78,7 +74,7 @@
           sudo cpupower frequency-set -g performance || { echo "Failed to set performance mode"; return 1; }
 
           # Perform the OS switch
-          nh os switch --hostname ${host} --update "/home/jr/flakes" || echo "Failed to switch OS"
+          nh os switch --hostname magic --update "/home/jr/flakes" || echo "Failed to switch OS"
 
           # Wait for the specified duration before switching back to powersave
           echo "Performance mode active for $duration seconds"
@@ -110,9 +106,9 @@
     '';
     shellAliases = {
       sv = "sudo nvim";
-      fr = "nh os switch --hostname ${host} /home/jr/my-nixos";
-      ft = "nh os test --hostname ${host} /home/jr/my-nixos"; # dont save generation to boot menu
-      fu = "nh os switch --hostname ${host} --update /home/jr/my-nixos";
+      fr = "nh os switch --hostname magic /home/jr/my-nixos";
+      ft = "nh os test --hostname magic /home/jr/my-nixos"; # dont save generation to boot menu
+      fu = "nh os switch --hostname magic --update /home/jr/my-nixos";
       upd = "sudo nixos-rebuild switch --upgrade --flake /home/jr/my-nixos";
       rebuild = "/home/jr/scripts/performance_hook.sh";
       ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
@@ -139,7 +135,7 @@
       la = "eza -lah --icons --grid --group-directories-first --icons";
       ld = "eza -lhD --icons=auto";
       lt = "eza --icons=auto --tree"; # list folder as tree
-      rbs = "echo starting performance mode && sudo cpupower frequency-set -g performance && nh os switch --hostname ${host} --update /home/jr/flakes"; # Amd pstate governor
+      rbs = "echo starting performance mode && sudo cpupower frequency-set -g performance && nh os switch --hostname magic --update /home/jr/flakes"; # Amd pstate governor
       powersave = "sudo cpupower frequency-set -g powersave"; # Amd pstate governor
       # Get the error messages from journalctl
       jctl = "journalctl -p 3 -xb";
