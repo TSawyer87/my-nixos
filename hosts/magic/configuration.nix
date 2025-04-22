@@ -15,14 +15,14 @@
     inputs.home-manager.nixosModules.home-manager
   ];
 
-  nixpkgs.pkgs = pkgs;
+  inputs.nixpkgs.pkgs = pkgs;
 
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = {inherit pkgs;};
     users.jr = {...}: {
-      imports = [./home.nix inputs.lib.hmModules];
+      imports = [./home.nix];
     };
   };
 
