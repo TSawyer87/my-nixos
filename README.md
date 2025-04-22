@@ -8,6 +8,8 @@
 
 - `nix build .#nixos`: build and deploy your configuration as a package, rather than by invoking `nixos-rebuild`
 
+- `nix run .#deploy-nixos` build-and-deploy script
+
 - `nix repl .#repl`: Load flake into repl
 
 - `nix fmt`: When run in root of flake it will format the whole configuration
