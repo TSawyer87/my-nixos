@@ -1,7 +1,7 @@
 {
   # pkgs,
   inputs,
-  userVars,
+  # userVars,
   config,
   ...
 }: {
@@ -49,7 +49,8 @@
   system.autoUpgrade.allowReboot = true;
   # system.autoUpgrade.channel = "https://nixos.org/channels/nixos-unstable";
 
-  console.keyMap = userVars.keys;
+  # console.keyMap = userVars.keys;
+  console.keyMap = "us";
 
   nixpkgs.config.allowUnfree = true;
 
