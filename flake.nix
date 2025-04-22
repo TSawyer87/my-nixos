@@ -76,8 +76,9 @@
     #   inherit my-inputs;
     # };
     pkgs = import nixpkgs {
-      inherit system;
       config.allowUnfree = true;
+      overlays = import ./lib/overlay.nix;
+      inherit system;
     };
 
     treefmtEval = treefmt-nix.lib.evalModule pkgs ./lib/treefmt.nix;
@@ -128,7 +129,7 @@
         modules = [
           ./hosts/${host}/configuration.nix
           home-manager.nixosModules.home-manager
-          (inputs.stylix.nixosModules.stylix {pkgs = pkgs;})
+          my-inputs.stylix.nixosModules.stylix
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
