@@ -1,6 +1,5 @@
 {
   # pkgs,
-  host,
   options,
   ...
 }: {
@@ -16,7 +15,7 @@
     #   };
     # };
     # networkmanager.wifi.backend = "iwd";
-    hostName = "${host}";
+    hostName = "magic";
     firewall = {
       enable = true;
       # allowedTCPPorts = [80 443 25];
