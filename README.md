@@ -1,6 +1,8 @@
 ### Debugging with a Flake REPL output
 
-First, we'll create a REPL environment to inspect and debug our flake's outputs,packages, and configurations. Define a `repl` output in `flake.nix` for easy access with `nix repl .#repl`:
+- One way to do this is to launch the repl with `nix repl` and inside the repl type `:lf /path/to/flake`. Or `nixos-rebuild repl --flake /path/to/flake` the latter provides a helpful welcome script showing what is loaded into your repl's scope.
+
+  First, we'll create a REPL environment to inspect and debug our flake's outputs,packages, and configurations. Define a `repl` output in `flake.nix` for easy access with `nix repl .#repl`:
 
 ```nix
 # flake.nix
