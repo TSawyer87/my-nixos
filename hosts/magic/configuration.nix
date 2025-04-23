@@ -12,6 +12,7 @@
     ./security.nix
     ./users.nix
     ../../nixos
+    inputs.lib.nixOsModules
     inputs.nixos-hardware.nixosModules.common-gpu-amd
     inputs.stylix.nixosModules.stylix
     inputs.home-manager.nixosModules.home-manager
