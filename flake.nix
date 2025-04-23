@@ -89,11 +89,12 @@
 
     # REPL function for debugging
     repl = import ./repl.nix {
-      inherit pkgs lib;
+      inherit pkgs;
       flake = self;
       userVars = userVars;
     };
   in {
+    lib = inputs.lib;
     # Formatter for nix fmt
     formatter.${system} = treefmtEval.config.build.wrapper;
 
