@@ -10,6 +10,7 @@
     ./xdg.nix
     ./bat.nix
     ./nvf.nix
+    ./fd.nix
     ./nh.nix
     ./emoji.nix
     ./direnv.nix
