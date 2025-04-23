@@ -2,6 +2,7 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    completionInit = "autoload -U compinit && compinit";
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     oh-my-zsh = {
@@ -18,7 +19,7 @@
       # if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
       #  exec Hyprland
       # fi
-      autoload -U compinit
+      # autoload -U compinit
       compinit
       setopt correct                                                  # Auto correct mistakes
       setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *
