@@ -89,8 +89,9 @@
 
     # REPL function for debugging
     repl = import ./repl.nix {
-      inherit pkgs lib userVars;
+      inherit pkgs lib;
       flake = self;
+      userVars = userVars;
     };
   in {
     # Formatter for nix fmt
