@@ -36,9 +36,6 @@
   # Styling Options
   stylix = {
     targets = {
-      gtk = {
-        theme = "Papirus-Dark";
-      };
       waybar.enable = false;
       rofi.enable = false;
       wofi.enable = false;
