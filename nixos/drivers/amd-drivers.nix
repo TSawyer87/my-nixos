@@ -73,7 +73,9 @@ in {
         "amd_pstate=active"
         "tsc=unstable"
         "radeon.si_support=0"
+        "radeon.cik_support=0"
         "amdgpu.si_support=1"
+        "amdgpu.cik_support=1"
       ];
       extraModulePackages = [config.boot.kernelPackages.v4l2loopback];
       blacklistedKernelModules = ["radeon"];
