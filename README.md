@@ -38,6 +38,7 @@
 - Easy Builds and Deployment:
 
   - Can build system declaratively using `nix build .#nixos`.
+  - `nix build .#nixos --dry-run`
 
   - The `deploy-nixos` app streamlines deployment making updates seamless.
 
@@ -58,4 +59,3 @@ nix repl .#repl
 nix-repl> flake.inputs.nixpkgs.lib.version
 "25.05.20250421.c11863f"
 ```
-

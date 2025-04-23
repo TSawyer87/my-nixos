@@ -32,14 +32,27 @@
       };
       ignores = [
         "*.jj"
+        "*.drv"
+        "*.out"
+        "*.log"
+        "flake.lock"
+        "Cargo.lock"
         "/target"
+        "/result"
+        "/nix/store"
+        "/nix/var/nix/profiles"
+        "/vm-state"
+        "/vm-config"
+        "vm-image.qcow2"
+        ".bash_history"
+        "wallpapers/*"
       ];
       extraConfig = {
-        url = {
-          "ssh://git@gitlab.dnm.radiofrance.fr:" = {
-            insteadOf = "https://gitlab.dnm.radiofrance.fr/";
-          };
-        };
+        # url = {
+        #   "ssh://git@gitlab.dnm.radiofrance.fr:" = {
+        #     insteadOf = "https://gitlab.dnm.radiofrance.fr/";
+        #   };
+        # };
         #Sign all commits using ssh key
         commit.gpgsign = true;
         gpg.format = "ssh";
