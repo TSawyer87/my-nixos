@@ -56,10 +56,12 @@ in {
         );
       };
 
+      cpu.amd.updateMicrocode =
+      lib.mkDefault config.hardware.enableRedistributableFirmware;
       # CPU microcode updates
-      cpu = {
-        amd.updateMicrocode = hasAmdCpu;
-      };
+      # cpu = {
+      #   amd.updateMicrocode = hasAmdCpu;
+      # };
     };
 
     # Boot configuration for AMD GPU support
