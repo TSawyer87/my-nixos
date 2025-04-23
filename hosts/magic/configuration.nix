@@ -4,7 +4,6 @@
   host,
   system,
   userVars,
-  config,
   ...
 }: {
   imports = [
@@ -18,6 +17,7 @@
     inputs.home-manager.nixosModules.home-manager
   ];
 
+  # Home-Manager Configuration needs to be here for home.packages to be available in the Configuration Package and VM i.e. `nix build .#nixos`
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -29,6 +29,7 @@
       ];
     };
   };
+  ############################################################################
 
   nixpkgs.overlays = [inputs.lib.overlays];
   # Enable or Disable Stylix

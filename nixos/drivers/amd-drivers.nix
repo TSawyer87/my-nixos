@@ -57,7 +57,7 @@ in {
       };
 
       cpu.amd.updateMicrocode =
-      lib.mkDefault config.hardware.enableRedistributableFirmware;
+        lib.mkDefault config.hardware.enableRedistributableFirmware;
       # CPU microcode updates
       # cpu = {
       #   amd.updateMicrocode = hasAmdCpu;

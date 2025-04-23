@@ -145,4 +145,4 @@ list-systemd:
 [linux]
 [group('services')]
 jctl:
-  jctl = "journalctl -p 3 -xb";
+  ^jctl = "journalctl -p 5 -xb";
