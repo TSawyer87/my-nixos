@@ -11,7 +11,7 @@
     ./hardware.nix
     ./security.nix
     ./users.nix
-    ../../nixos
+    # ../../nixos
     inputs.lib.nixOsModules
     inputs.nixos-hardware.nixosModules.common-gpu-amd
     inputs.stylix.nixosModules.stylix
@@ -23,7 +23,10 @@
     useUserPackages = true;
     extraSpecialArgs = {inherit pkgs inputs host system userVars;};
     users.jr = {...}: {
-      imports = [./home.nix inputs.lib.homeModules];
+      imports = [
+        inputs.lib.homeModules
+        ./home.nix
+      ];
     };
   };
 
