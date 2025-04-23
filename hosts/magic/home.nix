@@ -34,16 +34,21 @@
   systemd.user.startServices = "sd-switch";
 
   # Styling Options
-  stylix.targets = {
-    waybar.enable = false;
-    rofi.enable = false;
-    wofi.enable = false;
-    mako.enable = false;
-    hyprland.enable = false;
-    hyprlock.enable = false;
-    helix.enable = false;
-    # ghostty.enable = false
-    # zed.enable = false
-    # nvf.enable = false
+  stylix = {
+    targets = {
+      gtk = {
+        theme = "Papirus-Dark";
+      };
+      waybar.enable = false;
+      rofi.enable = false;
+      wofi.enable = false;
+      mako.enable = false;
+      hyprland.enable = false;
+      hyprlock.enable = false;
+      helix.enable = false;
+      # ghostty.enable = false
+      # zed.enable = false
+      # nvf.enable = false
+    };
   };
 }
