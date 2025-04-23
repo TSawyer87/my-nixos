@@ -22,7 +22,7 @@
     useUserPackages = true;
     extraSpecialArgs = {inherit pkgs inputs host system userVars;};
     users.jr = {...}: {
-      imports = [./home.nix];
+      imports = [./home.nix inputs.lib.homeModules];
     };
   };
 
