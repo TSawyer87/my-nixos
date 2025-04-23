@@ -12,7 +12,6 @@
 
   # Import Program Configurations
   imports = [
-    ../../home
     inputs.dont-track-me.homeManagerModules.default
   ];
 
