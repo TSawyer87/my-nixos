@@ -89,7 +89,7 @@
 
     # REPL function for debugging
     repl = import ./repl.nix {
-      inherit pkgs lib;
+      inherit pkgs lib userVars;
       flake = self;
     };
   in {
@@ -112,7 +112,7 @@
       };
       # build and deploy with `nix build .#nixos`
       nixos = defaultConfig.config.system.build.toplevel;
-      # Explicitly named Vm Configuration
+      # Explicitly named Vm Configuration `nix build .#nixos-vm`
       nixos-vm = vmConfig.config.system.build.vm;
     };
 
