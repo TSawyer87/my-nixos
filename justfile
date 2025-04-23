@@ -140,3 +140,9 @@ list-failed:
 [group('services')]
 list-systemd:
   systemctl list-units systemd-*
+
+# List journal
+[linux]
+[group('services')]
+jctl:
+  jctl = "journalctl -p 3 -xb";
