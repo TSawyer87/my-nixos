@@ -12,8 +12,6 @@ with lib; let
     "amdcpu"
     # "intel-old"
   ];
-
-  hasAmdCpu = builtins.elem "amdcpu" drivers;
   hasAmdGpu = builtins.elem "amdgpu" drivers;
 
   needsMesa = hasAmdGpu;
